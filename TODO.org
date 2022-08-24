@@ -1,0 +1,29 @@
+#+title: Todo
+
+* Priority
+[ ] Secret managment
+[ ] Complete the TODOs in code
+[ ] Document the reading list for this setup
+[ ] Refactor the hosts to Hosts/nixos hosts/nix hosts/vm
+[ ] VM creation for testing
+[ ] Wayland setup
+[ ] Nix setup for non-NixOS systems
+
+* Graphics
+GPU
+Propritary Nvidea graphics driver
+
+* Networking
+enable networking.networkmanager and networking.wireless to co-exist
+
+* Document the following
+
+nix-shell -p git nixFlakes emacs
+
+nix --extra-experimental-features "nix-command flakes" flake init -t templates#simpleContainer
+
+https://github.com/nix-community/nix-environments
+
+* Install spdx emacs
+https://github.com/condy0919/spdx.el
+https://www.gnu.org/software/emacs/manual/html_node/autotype/Copyrights.html
