@@ -9,7 +9,7 @@ Flake based nixos configuration. Intended as a private config, so it is not abst
 1. Acquire NixOS 21.11 or newer:
    ```sh
    # downlod nixos-unstable
-   wget -O nixos.iso https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso
+   wget -O nixos.iso https://channels.nixos.org/nixos-unstable/latest-gnome-minimal-x86_64-linux.iso
    
    # Write to usb drive
    cp nixos.iso /dev/sdX

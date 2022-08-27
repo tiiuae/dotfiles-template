@@ -6,19 +6,11 @@
     ((emacsPackagesFor emacs).emacsWithPackages
       (epkgs: [ epkgs.vterm epkgs.pdf-tools ]));
 
-  system.userActivationScripts = {
-    installDoomEmacs = ''
-      source ${config.system.build.setEnvironment}
-      if [ ! -d "/home/brian/.emacs.d" ]; then
-        git clone https://github.com/doomemacs/doomemacs.git /home/brian/.emacs.d
-        git clone https://github.com/brianmcgillion/doomd.git /home/brian/.doom.d
-      fi
-    '';
-  };
-
+  # TODO can the XDG_CONFIG be generalised higher up?
   environment.sessionVariables = rec {
     EDITOR = "emacs";
-    path = [ "/home/brian/emacs.d/bin" ];
+    XDG_CONFIG_HOME = "\${HOME}/.config";
+    PATH = "$PATH:$XDG_CONFIG_HOME/emacs/bin";
   };
 
   fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
@@ -51,4 +43,15 @@
     gnuplot
 
   ]; # Dependencies
+
+  system.userActivationScripts = {
+    installDoomEmacs = ''
+      source ${config.system.build.setEnvironment}
+      if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
+        git clone https://github.com/doomemacs/doomemacs.git "$XDG_CONFIG_HOME/emacs"
+        git clone https://github.com/brianmcgillion/doomd.git "$XDG_CONFIG_HOME/doom"
+      fi
+    '';
+  };
+
 }
