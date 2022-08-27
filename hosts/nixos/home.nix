@@ -1,9 +1,9 @@
 { config, lib, pkgs, user, ... }:
 
 {
-  imports = (import ../modules/shell) ++ (import ../modules/apps)
-    ++ (import ../modules/browsers) ++ (import ../modules/development)
-    ++ (import ../modules/editors);
+  imports = (import ../../modules/shell) ++ (import ../../modules/apps)
+    ++ (import ../../modules/browsers) ++ (import ../../modules/development)
+    ++ (import ../../modules/editors);
 
   home = {
     username = "${user}";

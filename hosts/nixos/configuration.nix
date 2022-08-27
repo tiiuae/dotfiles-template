@@ -7,13 +7,13 @@
 {
   imports = # Import window or display manager.
     [
-      ../modules/editors/emacs # ! Comment this out on first install !
+      ../../modules/editors/emacs # ! Comment this out on first install !
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.brian = {
+  users.users."${user}" = {
     isNormalUser = true;
-    description = "brian";
+    description = "${user}";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [ firefox google-chrome ];
   };

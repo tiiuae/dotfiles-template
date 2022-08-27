@@ -15,6 +15,7 @@
 
     # Track more recent emacs additions e.g. native compiled
     #emacs-overlay.url = "github:nix-community/emacs-overlay";
+    #nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
