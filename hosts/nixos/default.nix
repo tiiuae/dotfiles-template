@@ -13,11 +13,11 @@ let
   lib = nixpkgs.lib;
 in {
 
-  desktop = lib.nixosSystem {
+  arcadia = lib.nixosSystem {
     inherit system;
     specialArgs = { inherit inputs user; };
     modules = [
-      ./desktop
+      ./arcadia
       ./configuration.nix
 
       home-manager.nixosModules.home-manager
@@ -27,7 +27,7 @@ in {
         home-manager.extraSpecialArgs = { inherit user; };
         home-manager.users.${user} = {
           programs.bash.enable = true;
-          imports = [ (import ./home.nix) ] ++ [ (import ./desktop/home.nix) ];
+          imports = [ (import ./home.nix) ] ++ [ (import ./arcadia/home.nix) ];
         };
       }
     ];
