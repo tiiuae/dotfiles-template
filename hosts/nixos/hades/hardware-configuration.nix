@@ -14,17 +14,20 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/nixos";
+    { device = "/dev/disk/by-uuid/49dab6ea-12ea-46b6-8b84-5d0991c04dc4";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
+boot.initrd.luks.devices."luks-6dda1bf3-4a24-4be6-afaa-c5a2ad96d974".device = "/dev/disk/by-uuid/6dda1bf3-4a24-4be6-afaa-c5a2ad96d974";
+
+  fileSystems."/boot/efi" =
     { device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
   swapDevices = [];
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

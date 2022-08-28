@@ -13,5 +13,9 @@
     loader.systemd-boot.configurationLimit = 5;
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot/efi";
+    # Setup keyfile
+    initrd.secrets = {
+      "/crypto_keyfile.bin" = null;
+    };
   };
 }
