@@ -14,8 +14,6 @@
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot/efi";
     # Setup keyfile
-    initrd.secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
+    initrd.secrets = { "/crypto_keyfile.bin" = null; };
   };
 }

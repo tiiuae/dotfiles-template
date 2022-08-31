@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
 
-{ lib, inputs, nixpkgs, home-manager, user, ... }:
+{ lib, inputs, nixpkgs, home-manager, user, nixos-hardware, ... }:
 
 let
   system = "x86_64-linux"; # system architecture
@@ -59,6 +59,8 @@ in {
     modules = [
       ./minerva
       ./configuration.nix
+      # add your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+      nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
 
       home-manager.nixosModules.home-manager
       {

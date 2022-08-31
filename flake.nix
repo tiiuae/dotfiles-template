@@ -15,16 +15,16 @@
 
     # Track more recent emacs additions e.g. native compiled
     #emacs-overlay.url = "github:nix-community/emacs-overlay";
-    #nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, ... }:
+  outputs = inputs@{ self, home-manager, nixpkgs, nixos-hardware, ... }:
     let user = "brian";
     in {
       nixosConfigurations = ( # for NixOS based systems
         import ./hosts { # imports ./hosts/default.nix
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs home-manager user;
+          inherit inputs nixpkgs home-manager user nixos-hardware;
         });
     };
 }
