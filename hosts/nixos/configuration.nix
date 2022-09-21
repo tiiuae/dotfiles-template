@@ -15,7 +15,7 @@
     isNormalUser = true;
     description = "${user}";
     extraGroups = [ "networkmanager" "wheel" "dialout" ];
-    packages = with pkgs; [ firefox google-chrome ];
+    packages = with pkgs; [ google-chrome ];
   };
 
   # Set your time zone.
