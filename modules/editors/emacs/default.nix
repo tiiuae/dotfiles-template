@@ -44,6 +44,10 @@
     graphviz
     gnuplot
 
+    # :lang markdown
+    # use grip for live MD viewing
+    grip
+
   ]; # Dependencies
 
   system.userActivationScripts = {
