@@ -14,7 +14,7 @@
   users.users."${user}" = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" ];
     packages = with pkgs; [ firefox google-chrome ];
   };
 
@@ -60,14 +60,16 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
-  fonts.fonts = with pkgs; [ # Fonts
+  fonts.fonts = with pkgs; [
+    # Fonts
     carlito # NixOS
     vegur # NixOS
     liberation_ttf
     fira-code
     fira-code-symbols
     font-awesome # Icons
-    (nerdfonts.override { # Nerdfont Icons override
+    (nerdfonts.override {
+      # Nerdfont Icons override
       fonts = [ "FiraCode" ];
     })
   ];
@@ -91,11 +93,13 @@
   # Only allow users to be declared declarativly, not imperative (i.e. adduser and similar tools will not work only config.nix)
   # users.mutableUsers = false;
 
-  nix = { # Nix Package Manager settings
+  nix = {
+    # Nix Package Manager settings
     settings = {
       auto-optimise-store = true; # Optimise syslinks
     };
-    gc = { # Automatic garbage collection
+    gc = {
+      # Automatic garbage collection
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
@@ -119,6 +123,18 @@
       #  wget
       git
     ];
+
+  nix.settings.substituters = [
+    "http://binarycache.vedenemo.dev"
+    "https://cache.dataaturservice.se/spectrum/"
+    "https://cache.nixos.org/"
+  ];
+
+  nix.settings.trusted-public-keys = [
+    "binarycache.vedenemo.dev:Yclq5TKpx2vK7WVugbdP0jpln0/dPHrbUYfsH3UXIps="
+    "spectrum-os.org-1:rnnSumz3+Dbs5uewPlwZSTP0k3g/5SRG4hD7Wbr9YuQ="
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
