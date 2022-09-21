@@ -124,16 +124,14 @@
       git
     ];
 
-  nix.settings.substituters = [
+  nix.settings.trusted-substituters = [
     "http://binarycache.vedenemo.dev"
     "https://cache.dataaturservice.se/spectrum/"
-    "https://cache.nixos.org/"
   ];
 
   nix.settings.trusted-public-keys = [
     "binarycache.vedenemo.dev:Yclq5TKpx2vK7WVugbdP0jpln0/dPHrbUYfsH3UXIps="
     "spectrum-os.org-1:rnnSumz3+Dbs5uewPlwZSTP0k3g/5SRG4hD7Wbr9YuQ="
-    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

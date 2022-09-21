@@ -28,6 +28,8 @@
     ## Module dependencies
     # :checkers spell
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+    # :lookup
+    wordnet
 
     # :tools editorconfig
     editorconfig-core-c # per-project style config
