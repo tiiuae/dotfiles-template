@@ -10,11 +10,14 @@
       ../../modules/editors/emacs # ! Comment this out on first install !
     ];
 
+  # Add the plugdev group with no members
+  users.groups.plugdev = { };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."${user}" = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" ];
     packages = with pkgs; [ google-chrome ];
   };
 
