@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ slack element-desktop ];
+  home.packages = with pkgs; [ slack element-desktop zoom-us ];
 }
