@@ -9,5 +9,6 @@
     tree-sitter-grammars.tree-sitter-rust
     cargo
     cargo-clone
+    clippy
   ];
 }
