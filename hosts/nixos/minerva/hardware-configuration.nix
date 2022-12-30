@@ -12,6 +12,11 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  boot.binfmt.emulatedSystems = [
+    "riscv64-linux"
+    "aarch64-linux"
+  ];
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/f9a590f0-3553-4e57-a477-91d291999797";
     fsType = "ext4";
