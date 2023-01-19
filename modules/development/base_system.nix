@@ -10,6 +10,8 @@
     cmake
     coreutils
     gnumake
-    nodejs
+    #nodejs
+    nodePackages.npm
+    bibtool
   ];
 }

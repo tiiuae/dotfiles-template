@@ -38,7 +38,7 @@
     sqlite
 
     # :lang latex & :lang org (latex previews)
-    texlive.combined.scheme-medium
+    texlive.combined.scheme-full
 
     # :lang org & :org-roam2
     graphviz
