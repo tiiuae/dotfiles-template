@@ -1,16 +1,16 @@
 { config, lib, pkgs, ... }:
 
+with lib;
 {
   services.emacs.enable = true;
   services.emacs.package = with pkgs;
     ((emacsPackagesFor emacs).emacsWithPackages
       (epkgs: [ epkgs.vterm epkgs.pdf-tools ]));
 
-  # TODO can the XDG_CONFIG be generalised higher up?
+
   environment.sessionVariables = rec {
     EDITOR = "emacs";
-    XDG_CONFIG_HOME = "\${HOME}/.config";
-    PATH = "$PATH:$XDG_CONFIG_HOME/emacs/bin";
+    PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
   };
 
   fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];

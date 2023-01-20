@@ -12,5 +12,8 @@
     stateVersion = "22.11";
   };
 
+  ### A tidy $HOME is a tidy mind
+  xdg.enable = true;
+
   programs = { home-manager.enable = true; };
 }

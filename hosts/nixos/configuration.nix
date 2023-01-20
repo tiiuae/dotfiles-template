@@ -5,8 +5,9 @@
 { config, lib, pkgs, inputs, user, ... }:
 
 {
-  imports = # Import window or display manager.
+  imports =
     [
+      ../../modules/environment/xdg.nix
       ../../modules/editors/emacs # ! Comment this out on first install !
     ];
 
@@ -22,7 +23,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Asia/Dubai";
+  #time.timeZone = "Asia/Dubai";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.utf8";
@@ -116,6 +117,10 @@
   };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # environment.sessionVariables = rec {
+  #   XDG_CONFIG_HOME = "\${HOME}/.config";
+  # };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
