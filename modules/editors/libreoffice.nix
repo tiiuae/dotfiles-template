@@ -10,5 +10,5 @@
   #       "vnd.sun.star.pathname:${office}/lib/libreoffice/program/fundamentalrc";
   #   };
 
-  home.packages = with pkgs; [ libreoffice ];
+  #  home.packages = with pkgs; [ libreoffice ];
 }
