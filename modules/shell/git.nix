@@ -28,4 +28,8 @@
       gitlab.user = "bmg";
     };
   };
+
+  programs.gh = {
+    enable = true;
+  };
 }
