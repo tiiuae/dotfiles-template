@@ -42,4 +42,8 @@
       initExtra = "history -w\n";
     };
   };
+
+  services = {
+    lorri.enable = true;
+  };
 }
