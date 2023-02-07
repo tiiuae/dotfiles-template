@@ -132,6 +132,8 @@
       wireguard-tools
       usbutils
       minicom
+      psmisc
+      nixos-generators
     ];
 
   nix.settings.trusted-substituters = [
