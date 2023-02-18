@@ -9,6 +9,7 @@
     fd # faster projectile indexing
     (ripgrep.override { withPCRE2 = true; })
     tree
+    psmisc
 
     # Code formatting
     nixfmt # cleanup the code

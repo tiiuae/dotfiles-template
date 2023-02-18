@@ -1,1 +1,1 @@
-[ ./base_system.nix ./rust.nix ]
+[ ./base_system.nix ./rust.nix ./embedded.nix ]

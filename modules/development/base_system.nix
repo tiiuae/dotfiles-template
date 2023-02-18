@@ -14,5 +14,7 @@
     nodePackages.npm
     bibtool
     llvm
+    nixos-generators
   ];
+
 }

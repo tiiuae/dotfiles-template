@@ -84,16 +84,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Only allow users to be declared declarativly, not imperative (i.e. adduser and similar tools will not work only config.nix)
   # users.mutableUsers = false;
@@ -119,23 +110,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # environment.sessionVariables = rec {
-  #   XDG_CONFIG_HOME = "\${HOME}/.config";
-  # };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
-      git
-      wireguard-tools
-      usbutils
-      minicom
-      psmisc
-      nixos-generators
-    ];
+  environment.systemPackages = with pkgs; [
+    git
+    wireguard-tools
+  ];
 
   nix.settings.trusted-substituters = [
     "http://binarycache.vedenemo.dev"
