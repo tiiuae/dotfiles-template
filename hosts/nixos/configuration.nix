@@ -147,6 +147,11 @@
     "spectrum-os.org-1:rnnSumz3+Dbs5uewPlwZSTP0k3g/5SRG4hD7Wbr9YuQ="
   ];
 
+  boot = {
+    cleanTmpDir = true;
+    tmpOnTmpfs = true;
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

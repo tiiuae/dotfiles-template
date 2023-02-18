@@ -39,7 +39,6 @@
     #TODO ADD git configs
     bash = {
       enable = true;
-      initExtra = "history -w\n";
     };
   };
 
