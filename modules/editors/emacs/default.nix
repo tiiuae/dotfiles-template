@@ -15,6 +15,9 @@ with lib;
 
   fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
 
+  # :grammar support through language tool
+  services.languagetool.enable = true;
+
   environment.systemPackages = with pkgs; [
     ((emacsPackagesFor emacs).emacsWithPackages
       (epkgs: [ epkgs.vterm epkgs.pdf-tools ]))

@@ -13,5 +13,6 @@
     #nodejs
     nodePackages.npm
     bibtool
+    llvm
   ];
 }
