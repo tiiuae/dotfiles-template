@@ -8,6 +8,7 @@
   imports =
     [
       ../../modules/environment/xdg.nix
+      ../../modules/security/yubikey.nix
       ../../modules/editors/emacs # ! Comment this out on first install !
     ];
 

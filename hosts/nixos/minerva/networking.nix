@@ -8,7 +8,8 @@
   #networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
-  networking.hostName = "minerva"; # Define your hostname
+  # Define your hostname
+  networking.hostName = "minerva";
 
   #Enable networking
   networking.networkmanager.enable = true;
