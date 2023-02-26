@@ -22,6 +22,9 @@ with lib;
     ((emacsPackagesFor emacs).emacsWithPackages
       (epkgs: [ epkgs.vterm epkgs.pdf-tools ]))
 
+    #native-comp emacs needs 'as' binary from binutils
+    binutils
+
     # TODO Use some secrets managment tool to lock sensitive conf files.
     gnutls # for TLS connectivity
 
@@ -46,6 +49,9 @@ with lib;
     # :lang org & :org-roam2
     graphviz
     gnuplot
+    # :lang org +dragndrop
+    wl-clipboard
+    maim
 
     # :lang markdown
     # use grip for live MD viewing

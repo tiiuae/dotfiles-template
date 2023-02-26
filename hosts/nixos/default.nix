@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
 
-{ lib, inputs, nixpkgs, home-manager, user, nixos-hardware, ... }:
+{ lib, inputs, nixpkgs, home-manager, user, nixos-hardware, sops-nix, ... }:
 
 let
   system = "x86_64-linux"; # system architecture
@@ -11,7 +11,8 @@ let
   };
 
   lib = nixpkgs.lib;
-in {
+in
+{
 
   arcadia = lib.nixosSystem {
     inherit system;
@@ -59,6 +60,8 @@ in {
     modules = [
       ./minerva
       ./configuration.nix
+      sops-nix.nixosModules.sops
+
       # add your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
       nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
 

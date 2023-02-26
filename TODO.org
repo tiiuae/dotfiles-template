@@ -26,4 +26,5 @@ https://github.com/nix-community/nix-environments
 
 * Install spdx emacs
 https://github.com/condy0919/spdx.el
+https://github.com/sei40kr/license-snippets
 https://www.gnu.org/software/emacs/manual/html_node/autotype/Copyrights.html

@@ -5,12 +5,11 @@
 { config, lib, pkgs, inputs, user, ... }:
 
 {
-  imports =
-    [
-      ../../modules/environment/xdg.nix
-      ../../modules/security/yubikey.nix
-      ../../modules/editors/emacs # ! Comment this out on first install !
-    ];
+  imports = [
+    ../../modules/environment/xdg.nix
+    ../../modules/security/yubikey.nix
+    ../../modules/editors/emacs # ! Comment this out on first install !
+  ];
 
   # Add the plugdev group with no members
   users.groups.plugdev = { };
@@ -131,6 +130,10 @@
     cleanTmpDir = true;
     tmpOnTmpfs = true;
   };
+
+
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

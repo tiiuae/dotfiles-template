@@ -5,6 +5,7 @@
     yubikey-manager
     age-plugin-yubikey
     yubikey-touch-detector
+    age
   ];
 
   services.pcscd.enable = true;
