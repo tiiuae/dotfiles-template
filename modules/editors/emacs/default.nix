@@ -54,9 +54,7 @@ with lib;
     maim
 
     # :lang markdown
-    # use grip for live MD viewing
-    grip
-
+    python3.pkgs.grip
   ]; # Dependencies
 
   system.userActivationScripts = {
