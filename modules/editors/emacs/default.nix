@@ -5,7 +5,7 @@ with lib;
   services.emacs.enable = true;
   services.emacs.package = with pkgs;
     ((emacsPackagesFor emacs).emacsWithPackages
-      (epkgs: [ epkgs.vterm epkgs.pdf-tools ]));
+      (epkgs: [ epkgs.vterm epkgs.pdf-tools epkgs.org-pdftools ]));
 
 
   environment.sessionVariables = rec {
@@ -20,7 +20,11 @@ with lib;
 
   environment.systemPackages = with pkgs; [
     ((emacsPackagesFor emacs).emacsWithPackages
-      (epkgs: [ epkgs.vterm epkgs.pdf-tools ]))
+      (epkgs: [
+        epkgs.vterm
+        epkgs.pdf-tools
+        epkgs.org-pdftools
+      ]))
 
     #native-comp emacs needs 'as' binary from binutils
     binutils
@@ -55,16 +59,18 @@ with lib;
 
     # :lang markdown
     python3.pkgs.grip
+    # (python3.withPackages (ps: with ps; [ grip ]))
   ]; # Dependencies
 
-  system.userActivationScripts = {
-    installDoomEmacs = ''
-      source ${config.system.build.setEnvironment}
-      if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
-        git clone https://github.com/doomemacs/doomemacs.git "$XDG_CONFIG_HOME/emacs"
-        git clone https://github.com/brianmcgillion/doomd.git "$XDG_CONFIG_HOME/doom"
-      fi
-    '';
-  };
+  system.userActivationScripts =
+    {
+      installDoomEmacs = ''
+        source ${config.system.build.setEnvironment}
+        if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
+          git clone https://github.com/doomemacs/doomemacs.git "$XDG_CONFIG_HOME/emacs"
+          git clone https://github.com/brianmcgillion/doomd.git "$XDG_CONFIG_HOME/doom"
+        fi
+      '';
+    };
 
 }
