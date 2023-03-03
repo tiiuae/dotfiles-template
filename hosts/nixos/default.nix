@@ -20,6 +20,7 @@ in
     modules = [
       ./arcadia
       ./configuration.nix
+      sops-nix.nixosModules.sops
 
       home-manager.nixosModules.home-manager
       {
@@ -60,6 +61,7 @@ in
     modules = [
       ./minerva
       ./configuration.nix
+      # TODO move this to common
       sops-nix.nixosModules.sops
 
       # add your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
