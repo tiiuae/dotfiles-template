@@ -7,6 +7,7 @@
 {
   imports = [
     ../../modules/environment/xdg.nix
+    ../../modules/environment/desktop-manager.nix
     ../../modules/security/yubikey.nix
     ../../modules/editors/emacs # ! Comment this out on first install !
   ];
@@ -39,22 +40,6 @@
     LC_TELEPHONE = "en_IE.utf8";
     LC_TIME = "en_IE.utf8";
   };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "fi";
-    xkbVariant = "nodeadkeys";
-  };
-
-  # Configure console keymap
-  console.keyMap = "fi";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

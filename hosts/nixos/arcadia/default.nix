@@ -30,4 +30,15 @@
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
     KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
   '';
+
+  # TODO Remove this after confirmation on arcadia, not needed with ergodox
+  # # Configure keymap in X11
+  # services.xserver = {
+  #   layout = "fi";
+  #   xkbVariant = "nodeadkeys";
+  # };
+
+  # # Configure console keymap
+  # console.keyMap = "fi";
+
 }

@@ -16,4 +16,14 @@
     # Setup keyfile
     initrd.secrets = { "/crypto_keyfile.bin" = null; };
   };
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "fi";
+    xkbVariant = "nodeadkeys";
+  };
+
+  # Configure console keymap
+  console.keyMap = "fi";
+
 }
