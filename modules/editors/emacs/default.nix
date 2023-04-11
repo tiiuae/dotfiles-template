@@ -1,19 +1,20 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; {
   services.emacs.enable = true;
-  services.emacs.package = with pkgs;
-    ((emacsPackagesFor emacs).emacsWithPackages
-      (epkgs: [ epkgs.vterm epkgs.pdf-tools epkgs.org-pdftools ]));
-
+  services.emacs.package = with pkgs; ((emacsPackagesFor emacs).emacsWithPackages
+    (epkgs: [epkgs.vterm epkgs.pdf-tools epkgs.org-pdftools]));
 
   environment.sessionVariables = rec {
     EDITOR = "emacs";
-    PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
+    PATH = ["$XDG_CONFIG_HOME/emacs/bin"];
   };
 
-  fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
+  fonts.fonts = [pkgs.emacs-all-the-icons-fonts];
 
   # :grammar support through language tool
   services.languagetool.enable = true;
@@ -37,7 +38,7 @@ with lib;
 
     ## Module dependencies
     # :checkers spell
-    (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+    (aspellWithDicts (ds: with ds; [en en-computers en-science]))
     # :lookup
     wordnet
 
@@ -62,15 +63,13 @@ with lib;
     # (python3.withPackages (ps: with ps; [ grip ]))
   ]; # Dependencies
 
-  system.userActivationScripts =
-    {
-      installDoomEmacs = ''
-        source ${config.system.build.setEnvironment}
-        if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
-          git clone https://github.com/doomemacs/doomemacs.git "$XDG_CONFIG_HOME/emacs"
-          git clone https://github.com/brianmcgillion/doomd.git "$XDG_CONFIG_HOME/doom"
-        fi
-      '';
-    };
-
+  system.userActivationScripts = {
+    installDoomEmacs = ''
+      source ${config.system.build.setEnvironment}
+      if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
+        git clone https://github.com/doomemacs/doomemacs.git "$XDG_CONFIG_HOME/emacs"
+        git clone https://github.com/brianmcgillion/doomd.git "$XDG_CONFIG_HOME/doom"
+      fi
+    '';
+  };
 }

@@ -1,10 +1,13 @@
 # SPDX-License-Identifier: MIT
-
-{ pkgs, lib, user, ... }:
-
 {
-  imports = [ (import ./hardware-configuration.nix) ]
-    ++ [ (import ./networking.nix) ];
+  pkgs,
+  lib,
+  user,
+  ...
+}: {
+  imports =
+    [(import ./hardware-configuration.nix)]
+    ++ [(import ./networking.nix)];
 
   # Bootloader.
   boot = {
@@ -40,5 +43,4 @@
 
   # # Configure console keymap
   # console.keyMap = "fi";
-
 }

@@ -2,9 +2,7 @@
 #
 # Set up and enforce XDG compliance. Other modules will take care of their own,
 # but this takes care of the general cases.
-
-{ config, ... }:
-{
+{config, ...}: {
   environment = rec {
     sessionVariables = {
       # These are the defaults, and xdg.enable does set them, but due to load
@@ -15,7 +13,7 @@
       XDG_DATA_HOME = "$HOME/.local/share";
       #TODO Make sure that the bin dir is created.
       XDG_BIN_HOME = "$HOME/.local/bin";
-      PATH = [ "$XDG_BIN_HOME" ];
+      PATH = ["$XDG_BIN_HOME"];
     };
     variables = {
       # Conform more programs to XDG conventions. The rest are handled by their

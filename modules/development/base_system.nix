@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # A selection of packages that are used in most standard environments
   # Building plugins
   # providing plugins (nodejs)
@@ -17,5 +20,4 @@
     gcc
     nixos-generators
   ];
-
 }

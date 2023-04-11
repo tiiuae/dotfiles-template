@@ -1,1 +1,1 @@
-[ ./chat.nix ]
+[./chat.nix]

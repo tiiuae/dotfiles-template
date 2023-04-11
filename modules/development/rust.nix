@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   #environment.systemPackages = with pkgs; [
   home.packages = with pkgs; [
     rust-analyzer

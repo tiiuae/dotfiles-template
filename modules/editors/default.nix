@@ -1,1 +1,1 @@
-[ ./libreoffice.nix ]
+[./libreoffice.nix]

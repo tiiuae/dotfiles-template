@@ -1,13 +1,9 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home = {
     # Specific packages for arcadia
-    packages = with pkgs;
-      [
-        # Applications
-        #        libreoffice # Office Packages
-      ];
+    packages = with pkgs; [
+      # Applications
+      #        libreoffice # Office Packages
+    ];
   };
-
 }

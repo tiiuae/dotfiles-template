@@ -1,10 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, lib, pkgs, inputs, user, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  user,
+  ...
+}: {
   imports = [
     ../../modules/environment/xdg.nix
     ../../modules/environment/desktop-manager.nix
@@ -13,14 +17,14 @@
   ];
 
   # Add the plugdev group with no members
-  users.groups.plugdev = { };
+  users.groups.plugdev = {};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."${user}" = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" ];
-    packages = with pkgs; [ google-chrome ];
+    extraGroups = ["networkmanager" "wheel" "dialout" "plugdev"];
+    packages = with pkgs; [google-chrome];
   };
 
   # Set your time zone.
@@ -59,7 +63,7 @@
     font-awesome # Icons
     (nerdfonts.override {
       # Nerdfont Icons override
-      fonts = [ "FiraCode" ];
+      fonts = ["FiraCode"];
     })
   ];
 
@@ -116,9 +120,7 @@
     tmpOnTmpfs = true;
   };
 
-
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

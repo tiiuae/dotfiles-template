@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # TODO add conf file and settings and secrets store
   #
   programs.git = {
@@ -14,7 +17,7 @@
       side-by-side = true;
       syntax-theme = "Dracula";
     };
-    ignores = [ "*~" "*.swp" ];
+    ignores = ["*~" "*.swp"];
     extraConfig = {
       core.editor = "emacs";
       color.ui = "auto";

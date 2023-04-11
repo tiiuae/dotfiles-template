@@ -1,1 +1,1 @@
-[ ./xdg.nix ]
+[./xdg.nix]

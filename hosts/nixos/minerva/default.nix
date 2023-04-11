@@ -1,10 +1,13 @@
 # SPDX-License-Identifier: MIT
-
-{ pkgs, lib, user, ... }:
-
 {
-  imports = [ (import ./hardware-configuration.nix) ]
-    ++ [ (import ./networking.nix) ];
+  pkgs,
+  lib,
+  user,
+  ...
+}: {
+  imports =
+    [(import ./hardware-configuration.nix)]
+    ++ [(import ./networking.nix)];
 
   # Bootloader.
   boot = {
@@ -14,7 +17,7 @@
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot/efi";
     # Setup keyfile
-    initrd.secrets = { "/crypto_keyfile.bin" = null; };
+    initrd.secrets = {"/crypto_keyfile.bin" = null;};
   };
 
   # Configure keymap in X11
@@ -25,5 +28,4 @@
 
   # Configure console keymap
   console.keyMap = "fi";
-
 }
