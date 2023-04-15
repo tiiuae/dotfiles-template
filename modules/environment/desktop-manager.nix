@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -15,5 +14,11 @@
     gnome-tour
     epiphany
     evolution
+    evolutionWithPlugins
+    evolution-data-server
+    gnome.geary
+    gnome.gnome-music
+    gnome.gnome-contacts
+    gnome.cheese
   ];
 }

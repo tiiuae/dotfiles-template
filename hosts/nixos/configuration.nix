@@ -1,13 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  user,
-  ...
+{ config
+, lib
+, pkgs
+, inputs
+, user
+, ...
 }: {
   imports = [
     ../../modules/environment/xdg.nix
@@ -17,14 +16,14 @@
   ];
 
   # Add the plugdev group with no members
-  users.groups.plugdev = {};
+  users.groups.plugdev = { };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."${user}" = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = ["networkmanager" "wheel" "dialout" "plugdev"];
-    packages = with pkgs; [google-chrome];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "plugdev" ];
+    packages = with pkgs; [ google-chrome ];
   };
 
   # Set your time zone.
@@ -63,7 +62,7 @@
     font-awesome # Icons
     (nerdfonts.override {
       # Nerdfont Icons override
-      fonts = ["FiraCode"];
+      fonts = [ "FiraCode" ];
     })
   ];
 
@@ -115,9 +114,10 @@
     "spectrum-os.org-1:rnnSumz3+Dbs5uewPlwZSTP0k3g/5SRG4hD7Wbr9YuQ="
   ];
 
-  boot = {
-    cleanTmpDir = true;
-    tmpOnTmpfs = true;
+  # Ensure that /tmp is on tmpfs and is cleaned a new on boot
+  boot.tmp = {
+    cleanOnBoot = true;
+    useTmpfs = true;
   };
 
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
