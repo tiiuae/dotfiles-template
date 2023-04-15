@@ -15,8 +15,8 @@
     psmisc
 
     # Code formatting
-    nixfmt # cleanup the code
-    nixpkgs-fmt
+    #    nixfmt # cleanup the code
+    #    nixpkgs-fmt
     rnix-lsp
     shfmt
     shellcheck
