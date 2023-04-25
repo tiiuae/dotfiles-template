@@ -81,20 +81,54 @@
     # Nix Package Manager settings
     settings = {
       auto-optimise-store = true; # Optimise syslinks
+
+      trusted-substituters = [
+        "http://cache.vedenemo.dev"
+      ];
+
+      substituters = [
+        "http://cache.vedenemo.dev"
+      ];
+
+      trusted-public-keys = [
+        "cache.vedenemo.dev:RGHheQnb6rXGK5v9gexJZ8iWTPX6OcSeS56YeXYzOcg="
+      ];
     };
+
     gc = {
       # Automatic garbage collection
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+
     registry.nixpkgs.flake = inputs.nixpkgs;
+
     extraOptions = ''
-      experimental-features = nix-command flakes
-      keep-outputs          = true
-      keep-derivations      = true
+      experimental-features    = nix-command flakes
+      keep-outputs             = true
+      keep-derivations         = true
+      # optional, useful when the builder has a faster internet connection than yours
+      builders-use-substitutes = true
     '';
+
+    #https://nixos.wiki/wiki/Distributed_build#NixOS
+    buildMachines = [
+      {
+        hostName = "awsarm";
+        system = "aarch64-linux";
+        maxJobs = 8;
+        speedFactor = 1;
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+        mandatoryFeatures = [];
+        sshUser = "brian";
+        sshKey = "/root/.ssh/id_rsa";
+      }
+    ];
+
+    distributedBuilds = true;
   };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -103,16 +137,6 @@
   environment.systemPackages = with pkgs; [
     git
     wireguard-tools
-  ];
-
-  nix.settings.trusted-substituters = [
-    "http://binarycache.vedenemo.dev"
-    "https://cache.dataaturservice.se/spectrum/"
-  ];
-
-  nix.settings.trusted-public-keys = [
-    "binarycache.vedenemo.dev:Yclq5TKpx2vK7WVugbdP0jpln0/dPHrbUYfsH3UXIps="
-    "spectrum-os.org-1:rnnSumz3+Dbs5uewPlwZSTP0k3g/5SRG4hD7Wbr9YuQ="
   ];
 
   # Ensure that /tmp is on tmpfs and is cleaned a new on boot
