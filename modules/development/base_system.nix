@@ -19,5 +19,7 @@
     llvm
     gcc
     nixos-generators
+    clang-tools
+    bear
   ];
 }

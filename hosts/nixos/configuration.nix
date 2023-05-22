@@ -13,6 +13,7 @@
     ../../modules/environment/xdg.nix
     ../../modules/environment/desktop-manager.nix
     ../../modules/security/yubikey.nix
+    ../../modules/security/ssh_config.nix
     ../../modules/editors/emacs # ! Comment this out on first install !
   ];
 
@@ -82,17 +83,17 @@
     settings = {
       auto-optimise-store = true; # Optimise syslinks
 
-      trusted-substituters = [
-        "http://cache.vedenemo.dev"
-      ];
+      # trusted-substituters = [
+      #     "http://cache.vedenemo.dev"
+      #   ];
 
-      substituters = [
-        "http://cache.vedenemo.dev"
-      ];
+      #   substituters = [
+      #     "http://cache.vedenemo.dev"
+      #   ];
 
-      trusted-public-keys = [
-        "cache.vedenemo.dev:RGHheQnb6rXGK5v9gexJZ8iWTPX6OcSeS56YeXYzOcg="
-      ];
+      #   trusted-public-keys = [
+      #     "cache.vedenemo.dev:RGHheQnb6rXGK5v9gexJZ8iWTPX6OcSeS56YeXYzOcg="
+      #   ];
     };
 
     gc = {
@@ -109,7 +110,7 @@
       keep-outputs             = true
       keep-derivations         = true
       # optional, useful when the builder has a faster internet connection than yours
-      builders-use-substitutes = true
+      ###builders-use-substitutes = true
     '';
 
     #https://nixos.wiki/wiki/Distributed_build#NixOS
