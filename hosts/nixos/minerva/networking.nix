@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   # The global useDHCP flag is deprecated, therefore explicitly set to false
   # here. Per-interface useDHCP will be mandatory in the future, so this
@@ -16,7 +15,8 @@
   #Enable networking
   networking.networkmanager.enable = true;
 
-  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  #TODO Is the network manager causing hte constant wifi drops
+  #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -31,8 +31,8 @@
   # Open ports in the firewall.
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [];
-    allowedUDPPorts = [];
+    allowedTCPPorts = [ ];
+    allowedUDPPorts = [ ];
   };
 
   ## Local config
