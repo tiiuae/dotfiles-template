@@ -43,6 +43,9 @@
     #TODO ADD git configs
     bash = {
       enable = true;
+      initExtra = ''
+        eval "$(ssh-agent -s)"
+      '';
     };
   };
 

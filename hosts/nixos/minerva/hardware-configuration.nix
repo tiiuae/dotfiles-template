@@ -39,6 +39,6 @@
     enable = true;
     cpuFreqGovernor = lib.mkDefault "conservative";
   };
-  hardware.cpu.intel.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.cpu.intel.updateMicrocode = true;
 }

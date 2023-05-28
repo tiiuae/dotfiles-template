@@ -34,5 +34,10 @@
 
   swapDevices = [];
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = lib.mkDefault "ondemand";
+  };
+
+  hardware.cpu.amd.updateMicrocode = true;
 }
