@@ -11,7 +11,7 @@ keys:
 creation_rules:
   - path_regex: hosts/nixos/secrets/[^/]+\.yaml$
     key_groups:
-     - age:
+    - age:
       - *mini1-yk
       - *mini2-yk
       - *key1-yk

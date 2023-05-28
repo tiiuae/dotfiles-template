@@ -145,7 +145,7 @@
     wireguard-tools
   ];
 
-  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  sops.defaultSopsFile = ./secrets/common.yaml;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
