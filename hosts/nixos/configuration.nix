@@ -140,12 +140,6 @@
     wireguard-tools
   ];
 
-  # Ensure that /tmp is on tmpfs and is cleaned a new on boot
-  boot.tmp = {
-    cleanOnBoot = true;
-    useTmpfs = true;
-  };
-
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
 
   # Some programs need SUID wrappers, can be configured further or are

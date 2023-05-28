@@ -1,1 +1,1 @@
-[./yubikey.nix]
+[./yubikey.nix ./hardening.nix]
