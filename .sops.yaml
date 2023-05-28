@@ -5,33 +5,9 @@ keys:
   - &key2-yk age1yubikey1qt0fu7u6uretapny90pzqll47hxc2edz8lduhy6ztlmgu9ffdjja2l63au9
   - &key3-yk age1yubikey1qvlquhc759rh69usa4dptw0rkcn0m6cghrz3j2f8064nfgag7anmqlfcsf2
   - &key4-yk age1yubikey1qwvfvqhvauv2tksrkh9yzhskeeznvk9hdtdvqmf6shlfj6k4phlqyhavea9
+  - &key5-yk age1yubikey1qthmsja6lax0khr4mjcmpk3wuck88lemx9yjjm6v89ppa6vwv44tghu0fxz
+  - &arcadia age1tvd5txsy62uywunnnyrhncdydnmgmg6prjczktw8f68wqun9kqysvuf94h
 creation_rules:
-  - path_regex: secrets/admins/[^/]+\.yaml$
-    key_groups:
-    - age:
-      - *mini1-yk
-      - *mini2-yk
-      - *key1-yk
-      - *key2-yk
-      - *key3-yk
-      - *key4-yk
-  - path_regex: modules/etcd-admin.yaml$
-    key_groups:
-    - age:
-      - *joerg
-      - *eva
-      pgp:
-      - *eve
-  # https://github.com/carlpett/terraform-provider-sops does not support age keys yet
-  - path_regex: eve/modules/gitlab/[^/]+\.enc.json$
-    key_groups:
-     - age:
-      - *mini1-yk
-      - *mini2-yk
-      - *key1-yk
-      - *key2-yk
-      - *key3-yk
-      - *key4-yk
   - path_regex: hosts/nixos/secrets/[^/]+\.yaml$
     key_groups:
      - age:
@@ -41,3 +17,5 @@ creation_rules:
       - *key2-yk
       - *key3-yk
       - *key4-yk
+      - *key5-yk
+      - *arcadia
