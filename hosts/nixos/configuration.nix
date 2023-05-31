@@ -83,17 +83,17 @@
     settings = {
       auto-optimise-store = true; # Optimise syslinks
 
-      # trusted-substituters = [
-      #     "http://cache.vedenemo.dev"
-      #   ];
+      trusted-substituters = [
+        "https://cache.vedenemo.dev"
+      ];
 
-      #   substituters = [
-      #     "http://cache.vedenemo.dev"
-      #   ];
+      substituters = [
+        "https://cache.vedenemo.dev"
+      ];
 
-      #   trusted-public-keys = [
-      #     "cache.vedenemo.dev:RGHheQnb6rXGK5v9gexJZ8iWTPX6OcSeS56YeXYzOcg="
-      #   ];
+      trusted-public-keys = [
+        "cache.vedenemo.dev:RGHheQnb6rXGK5v9gexJZ8iWTPX6OcSeS56YeXYzOcg="
+      ];
     };
 
     gc = {
@@ -137,6 +137,7 @@
   };
 
   hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
