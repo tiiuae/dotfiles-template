@@ -21,5 +21,6 @@
     nixos-generators
     clang-tools
     bear
+    bcompare
   ];
 }
