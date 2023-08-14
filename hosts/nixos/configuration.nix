@@ -54,7 +54,7 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     # Fonts
     carlito # NixOS
     vegur # NixOS

@@ -14,7 +14,7 @@ with lib; {
     PATH = ["$XDG_CONFIG_HOME/emacs/bin"];
   };
 
-  fonts.fonts = [pkgs.emacs-all-the-icons-fonts];
+  fonts.packages = [pkgs.emacs-all-the-icons-fonts];
 
   # :grammar support through language tool
   services.languagetool.enable = true;
