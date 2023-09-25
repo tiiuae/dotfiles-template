@@ -6,7 +6,7 @@
 }:
 with lib; {
   services.emacs.enable = true;
-  services.emacs.package = with pkgs; ((emacsPackagesFor emacs).emacsWithPackages
+  services.emacs.package = with pkgs; ((emacsPackagesFor emacs29-pgtk).emacsWithPackages
     (epkgs: [epkgs.vterm epkgs.pdf-tools epkgs.org-pdftools]));
 
   environment.sessionVariables = rec {
@@ -14,13 +14,13 @@ with lib; {
     PATH = ["$XDG_CONFIG_HOME/emacs/bin"];
   };
 
-  fonts.packages = [pkgs.emacs-all-the-icons-fonts];
+  #fonts.packages = [pkgs.emacs-all-the-icons-fonts];
 
   # :grammar support through language tool
   services.languagetool.enable = true;
 
   environment.systemPackages = with pkgs; [
-    ((emacsPackagesFor emacs).emacsWithPackages
+    ((emacsPackagesFor emacs29-pgtk).emacsWithPackages
       (epkgs: [
         epkgs.vterm
         epkgs.pdf-tools
@@ -57,6 +57,9 @@ with lib; {
     # :lang org +dragndrop
     wl-clipboard
     maim
+
+    # :formating
+    dockfmt
 
     # :lang markdown
     python3.pkgs.grip
