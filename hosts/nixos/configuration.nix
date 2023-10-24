@@ -12,6 +12,7 @@
   imports = [
     ../../modules/environment/xdg.nix
     ../../modules/environment/desktop-manager.nix
+    ../../modules/environment/system-packages.nix
     ../../modules/security/yubikey.nix
     ../../modules/security/ssh_config.nix
     ../../modules/editors/emacs # ! Comment this out on first install !
