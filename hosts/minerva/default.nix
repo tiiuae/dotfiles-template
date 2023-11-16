@@ -2,44 +2,10 @@
 {
   self,
   lib,
-  inputs,
   ...
 }: {
-  # imports = lib.flatten [
-  #   [
-  #     ./networking.nix
-  #     ./hardware-configuration.nix
-  #   ]
-  # ];
-  imports = lib.flatten [
-    (with self.nixosModules; [
-      audio
-      common
-      desktop-manager
-      emacs
-      hardening
-      libreoffice
-      locale-font
-      system-packages
-      user-bmg
-      user-groups
-      xdg
-      yubikey
-      user-bmg
-      user-groups
-    ])
-    [
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
-        home-manager.users.brian = {
-          imports = [(import ../../home/home.nix)];
-        };
-      }
-    ]
-  ];
+  #Set the baseline with common.nix
+  imports = [self.nixosModules.common];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

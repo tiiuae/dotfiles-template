@@ -1,11 +1,39 @@
 # SPDX-License-Identifier: Apache-2.0
 {
+  self,
   inputs,
   lib,
   config,
   pkgs,
   ...
 }: {
+  imports = lib.flatten [
+    (with self.nixosModules; [
+      audio
+      desktop-manager
+      emacs
+      hardening
+      libreoffice
+      locale-font
+      system-packages
+      user-bmg
+      user-groups
+      xdg
+      yubikey
+    ])
+    [
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = {inherit inputs;};
+        home-manager.users.brian = {
+          imports = [(import ../home/home.nix)];
+        };
+      }
+    ]
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -93,25 +121,15 @@
   programs.ssh.startAgent = true;
   services.openssh.startWhenNeeded = false;
 
-  #TODO cleanup
-  # security.sudo.enable = true;
-
   # Contents of the user and group files will be replaced on system activation
   # Ref: https://search.nixos.org/options?channel=unstable&show=users.mutableUsers
   users.mutableUsers = false;
 
-  # Set your time zone (movable so lets set through Gnome)
-  #time.timeZone = "dubai/asia";
-
-  # TODO should this be here
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;
 
   #TODO Enable and/or move
   #sops.defaultSopsFile = ./secrets/common.yaml;
-
-  # TODO Tidy Shell
-  #programs.bash.enableCompletion = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.05";
