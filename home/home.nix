@@ -1,21 +1,10 @@
-{config, ...}: {
+{...}: {
   imports = [
     ./shell
     ./apps
     ./browsers
     ./development
   ];
-  # ++ [(import ./apps)]
-  # ++ [(import ./browsers)]
-  # ++ [(import ./development)];
-
-  #TODO Remove this in tidy phase
-  # home = {
-  #   username = "${user}";
-  #   homeDirectory = "/home/${user}";
-
-  #   stateVersion = "23.05";
-  # };
 
   home = {
     #TODO ask Brian about config

@@ -8,10 +8,6 @@
     (ripgrep.override {withPCRE2 = true;})
     tree
     psmisc
-
-    # Code formatting
-    #    nixfmt # cleanup the code
-    #    nixpkgs-fmt
     rnix-lsp
     shfmt
     shellcheck
@@ -42,9 +38,5 @@
         eval "$(ssh-agent -s)"
       '';
     };
-  };
-
-  services = {
-    lorri.enable = true;
   };
 }

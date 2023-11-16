@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-{config, ...}: {
+_: {
   users.users = {
     brian = {
       isNormalUser = true;

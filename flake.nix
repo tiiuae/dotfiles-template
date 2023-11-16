@@ -68,22 +68,3 @@
       ];
     };
 }
-# }: let
-#   user = "brian";
-#   system = "x86_64-linux";
-#   #pkgs = import <nixpkgs> {};
-# in {
-#   # Ensure that nix fmt will format the project correctly
-#   formatter.${system} = alejandra.defaultPackage.${system};
-#   nixosConfigurations = (
-#     # for NixOS based system
-#     import ./hosts {
-#       # imports ./hosts/default.nix
-#       inherit (nixpkgs) lib;
-#       inherit inputs nixpkgs home-manager user nixos-hardware sops-nix alejandra;
-#     }
-#   );
-#   devShell."${system}" = import ./shell.nix {inherit nixpkgs;};
-# };
-#}
-

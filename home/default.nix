@@ -1,21 +1,4 @@
 _: {
-  # imports = [
-  #     inputs.home-manager.nixosModules.home-manager
-  #     {
-  #       home-manager.useGlobalPkgs = true;
-  #       home-manager.useUserPackages = true;
-  #       home-manager.extraSpecialArgs = {inherit inputs;};
-  #       home-manager.users.brian = {
-  #         imports = [(import ../../home/home.nix)];
-  #       };
-  #     }
-  #   ];
-  # inputs = {
-  #   home-manager.useGlobalPkgs = true;
-  #   home-manager.useUserPackages = true;
-  #   home-manager.extraSpecialArgs = {inherit inputs;};
-  #   home-manager.users.brian = {
-  #     imports = [(import ./home.nix)];
-  #   };
-  # };
+#TODO Do we need to import this in the main level flake.nix
+# As we use the ./home.nix as the jumping point for homeManager in hosts/common.nix
 }
