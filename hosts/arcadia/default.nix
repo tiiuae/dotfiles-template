@@ -1,12 +1,53 @@
 # SPDX-License-Identifier: MIT
-{pkgs, ...}: {
-  imports =
-    [(import ./hardware-configuration.nix)]
-    ++ [(import ./networking.nix)];
+{
+  lib,
+  pkgs,
+  self,
+  ...
+}: {
+  #Set the baseline with common.nix
+  imports = [self.nixosModules.common];
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  boot = {
+    initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
+  };
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/0d91a026-c4f7-4d36-bcec-9a6becdaeb92";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/7BAD-F70E";
+    fsType = "vfat";
+  };
+
+  swapDevices = [];
+
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = lib.mkDefault "ondemand";
+  };
+
+  hardware.cpu.amd.updateMicrocode = true;
+
+  networking.interfaces.enp5s0.useDHCP = true;
+
+  #TODO Replace this with the name of the nixosConfiguration so it can be common
+  # Define your hostname
+  networking.hostName = "arcadia"; # Define your hostname.
+
+  #
+  # Setup the Ergodox EZ
+  #
   environment.systemPackages = with pkgs; [
     wally-cli # ergodox configuration tool
-  ]; # Dependencies
+  ];
 
   services.udev.extraRules = ''
     # Rules for Oryx web flashing and live training

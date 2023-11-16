@@ -10,6 +10,7 @@ _: {
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIA/pwHnzGNM+ZU4lANGROTRe2ZHbes7cnZn72Oeun/MCAAAABHNzaDo="
       ];
       extraGroups = ["networkmanager" "wheel" "dialout" "plugdev"];
+      #Set an initial dummy "Password" for the first boot
       hashedPassword = "$y$j9T$vEb9JvWNSs9/1cHz8h4Mt1$40SOms0moILeEUaD7dXje.husHsyZVCLtWhRMPFMcE7";
     };
   };

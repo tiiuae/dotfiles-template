@@ -10,48 +10,28 @@
     common = import ./common.nix;
 
     # host modules
-    #host-arcadia = import ./arcadia;
-    #host-hades = import ./hades;
+    host-arcadia = import ./arcadia;
     host-minerva = import ./minerva;
+    #host-hades = import ./hades;
   };
 
   flake.nixosConfigurations = let
     # make self and inputs available in nixos modules
     specialArgs = {inherit self inputs;};
   in {
-    # arcadia = lib.nixosSystem {
-    #   inherit specialArgs;
-    #   modules = [
-    #     inputs.home-manager.nixosModules.home-manager
-    #     {
-    #       home-manager.useGlobalPkgs = true;
-    #       home-manager.useUserPackages = true;
-    #       home-manager.extraSpecialArgs = {inherit inputs;};
-    #       home-manager.users.brian = {
-    #         imports = [(import ./home.nix)];
-    #       };
-    #     }
-    #     self.nixosModules.host-arcadia
-    #   ];
-    # };
-    # hades = lib.nixosSystem {
-    #   inherit specialArgs;
-    #   modules = [
-    #     inputs.home-manager.nixosModules.home-manager
-    #     {
-    #       home-manager.useGlobalPkgs = true;
-    #       home-manager.useUserPackages = true;
-    #       home-manager.extraSpecialArgs = {inherit inputs;};
-    #       home-manager.users.brian = {
-    #         imports = [(import ./home.nix)];
-    #       };
-    #     }
-    #     self.nixosModules.host-hades
-    #   ];
-    # };
+    arcadia = lib.nixosSystem {
+      inherit specialArgs;
+      modules = [self.nixosModules.host-arcadia];
+    };
+
     minerva = lib.nixosSystem {
       inherit specialArgs;
       modules = [self.nixosModules.host-minerva];
     };
+
+    # hades = lib.nixosSystem {
+    #   inherit specialArgs;
+    #   modules = [self.nixosModules.host-hades];
+    # };
   };
 }
