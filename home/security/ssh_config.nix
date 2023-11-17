@@ -6,4 +6,8 @@ _: {
            hostname 192.168.10.149
     '';
   };
+
+  services = {
+    ssh-agent.enable = true;
+  };
 }
