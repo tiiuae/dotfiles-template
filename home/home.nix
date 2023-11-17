@@ -18,6 +18,5 @@
 
   programs = {
     home-manager.enable = true;
-    bash.enable = true;
   };
 }
