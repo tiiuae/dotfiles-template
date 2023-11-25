@@ -1,9 +1,10 @@
 {...}: {
   imports = [
-    ./shell
     ./apps
     ./browsers
     ./development
+    ./security
+    ./shell
   ];
 
   home = {

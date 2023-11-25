@@ -39,6 +39,12 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     #   inputs.nixpkgs-stable.follows = "nixpkgs";
     # };
+
+    #TODO add the following for more managable configs
+    #https://github.com/ehllie/ez-configs/tree/main
+    # Part of flake-parts modules
+    # See example usage
+    # https://github.com/ehllie/dotfiles/tree/main
   };
 
   outputs = inputs @ {

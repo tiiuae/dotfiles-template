@@ -22,11 +22,13 @@ with lib; {
 
   environment.systemPackages = with pkgs; [
     ((emacsPackagesFor emacs29-pgtk).emacsWithPackages
-      (epkgs: [
-        epkgs.vterm
-        epkgs.pdf-tools
-        epkgs.org-pdftools
-      ]))
+      (epkgs:
+        with epkgs; [
+          vterm
+          pdf-tools
+          org-pdftools
+          treesit-grammars.with-all-grammars
+        ]))
 
     #native-comp emacs needs 'as' binary from binutils
     binutils
@@ -61,6 +63,8 @@ with lib; {
 
     # :formating
     dockfmt
+    libxml2
+    tree-sitter
 
     # :lang markdown
     python3.pkgs.grip
