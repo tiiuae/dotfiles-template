@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   programs = {
     terminator = {
       enable = true;

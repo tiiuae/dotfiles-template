@@ -3,5 +3,10 @@
 #
 #
 _: {
-  imports = [./basic.nix ./fzf.nix ./git.nix ./terminator.nix];
+  imports = [
+    ./basic.nix
+    ./fzf.nix
+    ./git.nix
+    ./terminator.nix
+  ];
 }
