@@ -8,6 +8,5 @@
     htop
     nix-info
     wireguard-tools
-    google-chrome
   ];
 }
