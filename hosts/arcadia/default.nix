@@ -31,7 +31,8 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = lib.mkDefault "ondemand";
+    #let the kernel manage it but here incase
+    #cpuFreqGovernor = lib.mkDefault "ondemand";
   };
 
   hardware.cpu.amd.updateMicrocode = true;
