@@ -19,13 +19,15 @@
     carlito # NixOS
     vegur # NixOS
     liberation_ttf
+    overpass
+    fira
     fira-code
     fira-code-symbols
     font-awesome # Icons
     # TODO replace nerdFonts (see emacs config)
     (nerdfonts.override {
       # Nerdfont Icons override
-      fonts = ["FiraCode"];
+      fonts = ["FiraCode" "FiraMono"];
     })
   ];
 }
