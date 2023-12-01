@@ -8,7 +8,6 @@
     cmake
     coreutils
     gnumake
-    #nodejs
     nodePackages.npm
     bibtool
     llvm
@@ -16,6 +15,5 @@
     nixos-generators
     clang-tools
     bear
-    bcompare
   ];
 }

@@ -29,7 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Track more recent emacs additions e.g. native compiled
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     # Disko for disk partitioning

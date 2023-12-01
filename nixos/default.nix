@@ -3,6 +3,7 @@ _: {
     audio = import ./audio.nix;
     desktop-manager = import ./desktop-manager.nix;
     emacs = import ./emacs.nix;
+    emacs-ui = import ./emacs-ui.nix;
     hardening = import ./hardening.nix;
     libreoffice = import ./libreoffice.nix;
     locale-font = import ./locale-font.nix;

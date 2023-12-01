@@ -3,6 +3,7 @@
   pkgs,
   self,
   inputs,
+  config,
   ...
 }: {
   imports = [
@@ -11,10 +12,14 @@
     inputs.disko.nixosModules.disko
   ];
 
-  environment.systemPackages = [
-    #Tmux with a nice wrapper
-    pkgs.byobu
-  ];
+  config = {
+    setup.device.isServer = true;
 
-  services.openssh.enable = true;
+    environment.systemPackages = [
+      #Tmux with a nice wrapper
+      pkgs.byobu
+    ];
+
+    services.openssh.enable = true;
+  };
 }

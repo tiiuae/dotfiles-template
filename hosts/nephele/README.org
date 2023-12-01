@@ -1,0 +1,38 @@
+* Installing to a remote server
+
+For a new server start by determining the correct Hardware configuration for the box.
+
+Three are a number of tools to help in this area but the one that allows for the easiest transition to Nixos is of course a Nixos image.
+
+[[https://github.com/nix-community/nixos-images][nixos-images]] provides the small kexec image. Start by logging into the remote server and run the following 2 commands:
+
+
+#+begin_src sh
+curl -L https://github.com/nix-community/nixos-images/releases/download/nixos-unstable/nixos-kexec-installer-noninteractive-x86_64-linux.tar.gz | tar -xzf- -C /root
+
+/root/kexec/run
+
+#+end_src
+
+Once complete log back into the device and collect the device configuration
+
+#+begin_src sh
+nixos-generate-config --no-filesystems --root /mnt
+
+ls -al /mnt/etc/nixos/
+#+end_src
+
+use [[https://github.com/nix-community/disko][disko]] to define the disk partitioning scheme that you with to apply
+
+Finally deploy the configuration to the new server
+#+begin_src sh
+nix run github:nix-community/nixos-anywhere -- --flake .#{server-config} root@<IP address>
+#+end_src
+
+Running this again will reset the server back to the state defined in the configuration, including wiping and recreating the disp partitioning scheme.
+
+For day-to-day iterative updates use the following
+
+#+begin_src shell
+nixos-rebuild switch --flake .#{config}e --target-host "root@IP ADDR"
+#+end_src

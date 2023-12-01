@@ -33,10 +33,6 @@ with lib; {
     #native-comp emacs needs 'as' binary from binutils
     binutils
 
-    # TODO Use some secrets managment tool to lock sensitive conf files.
-    gnutls # for TLS connectivity
-
-    imagemagick # for image-dired
     zstd # for undo-fu-session/undo-tree compression
 
     ## Module dependencies
@@ -51,16 +47,6 @@ with lib; {
     # :tools lookup & :lang org +roam
     sqlite
 
-    # :lang latex & :lang org (latex previews)
-    texlive.combined.scheme-full
-
-    # :lang org & :org-roam2
-    graphviz
-    gnuplot
-    # :lang org +dragndrop
-    wl-clipboard
-    maim
-
     # :formating
     dockfmt
     libxml2
@@ -68,8 +54,7 @@ with lib; {
 
     # :lang markdown
     python3.pkgs.grip
-    # (python3.withPackages (ps: with ps; [ grip ]))
-  ]; # Dependencies
+  ];
 
   system.userActivationScripts = {
     installDoomEmacs = ''
