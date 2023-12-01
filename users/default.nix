@@ -3,5 +3,6 @@
   flake.nixosModules = {
     user-bmg = import ./bmg.nix;
     user-groups = import ./groups.nix;
+    user-root = import ./root.nix;
   };
 }

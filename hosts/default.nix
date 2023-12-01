@@ -7,12 +7,13 @@
 }: {
   flake.nixosModules = {
     # shared modules
-    common = import ./common.nix;
+    common-client = import ./common-client.nix;
+    common-server = import ./common-server.nix;
 
     # host modules
     host-arcadia = import ./arcadia;
     host-minerva = import ./minerva;
-    #host-hades = import ./hades;
+    host-nephele = import ./nephele;
   };
 
   flake.nixosConfigurations = let
@@ -29,9 +30,9 @@
       modules = [self.nixosModules.host-minerva];
     };
 
-    # hades = lib.nixosSystem {
-    #   inherit specialArgs;
-    #   modules = [self.nixosModules.host-hades];
-    # };
+    nephele = lib.nixosSystem {
+      inherit specialArgs;
+      modules = [self.nixosModules.host-nephele];
+    };
   };
 }

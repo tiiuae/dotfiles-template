@@ -7,31 +7,12 @@
   pkgs,
   ...
 }: {
-  imports = lib.flatten [
-    (with self.nixosModules; [
-      audio
-      desktop-manager
-      emacs
-      hardening
-      libreoffice
-      locale-font
-      system-packages
-      user-bmg
-      user-groups
-      xdg
-      yubikey
-    ])
-    [
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
-        home-manager.users.brian = {
-          imports = [(import ../home/home.nix)];
-        };
-      }
-    ]
+  imports = with self.nixosModules; [
+    hardening
+    system-packages
+    user-bmg
+    user-groups
+    xdg
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -47,15 +28,7 @@
     settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Subsituters
-      # trusted-public-keys = [
-      #   "cache.vedenemo.dev:RGHheQnb6rXGK5v9gexJZ8iWTPX6OcSeS56YeXYzOcg="
-      #   "cache.ssrcdevops.tii.ae:oOrzj9iCppf+me5/3sN/BxEkp5SaFkHfKTPPZ97xXQk="
-      # ];
-      # substituters = [
-      #   "https://cache.vedenemo.dev"
-      #   "https://cache.ssrcdevops.tii.ae"
-      # ];
+
       # Avoid copying unecessary stuff over SSH
       builders-use-substitutes = true;
       trusted-users = ["root" "brian"];
@@ -100,32 +73,16 @@
     Restart = "on-failure";
   };
 
-  # Bootloader.
-  boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-    loader.systemd-boot.enable = true;
-    loader.systemd-boot.configurationLimit = 5;
-    loader.efi.canTouchEfiVariables = true;
-    loader.efi.efiSysMountPoint = "/boot/efi";
-    binfmt.emulatedSystems = [
-      "riscv64-linux"
-      "aarch64-linux"
-    ];
-  };
-
   # Common network configuration
   # The global useDHCP flag is deprecated, therefore explicitly set to false
   # here. Per-interface useDHCP will be mandatory in the future, so this
   # generated config replicates the default behaviour.
   networking = {
     useDHCP = false;
-    networkmanager.enable = true;
     enableIPv6 = false;
     #Open ports in the firewall?
     firewall = {
       enable = true;
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
     };
   };
 
@@ -133,9 +90,12 @@
   programs.ssh = {
     startAgent = true;
     extraConfig = ''
-      Host awsarm
-        HostName awsarm.vedenemo.dev
-        Port 20220
+       Host awsarm
+         HostName awsarm.vedenemo.dev
+         Port 20220
+      Host nephele
+         Hostname 65.109.25.143
+         Port 22
     '';
     knownHosts = {
       awsarm-ed25519 = {
@@ -152,7 +112,6 @@
       };
     };
   };
-  services.openssh.startWhenNeeded = false;
 
   # Contents of the user and group files will be replaced on system activation
   # Ref: https://search.nixos.org/options?channel=unstable&show=users.mutableUsers
@@ -161,9 +120,14 @@
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;
 
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    binfmt.emulatedSystems = [
+      "riscv64-linux"
+      "aarch64-linux"
+    ];
+  };
+
   #TODO Enable and/or move
   #sops.defaultSopsFile = ./secrets/common.yaml;
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "22.05";
 }

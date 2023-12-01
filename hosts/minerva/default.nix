@@ -5,7 +5,7 @@
   ...
 }: {
   #Set the baseline with common.nix
-  imports = [self.nixosModules.common];
+  imports = [self.nixosModules.common-client];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
@@ -57,4 +57,7 @@
 
   # Configure console keymap
   console.keyMap = "fi";
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "22.05";
 }

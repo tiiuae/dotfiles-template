@@ -8,5 +8,6 @@
     htop
     nix-info
     wireguard-tools
+    tree
   ];
 }

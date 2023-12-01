@@ -32,6 +32,12 @@
     # Track more recent emacs additions e.g. native compiled
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
+    # Disko for disk partitioning
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     #TODO re-enable later
     # for provisioning secrets that can be embedded in the configuration
     # sops-nix = {

@@ -6,7 +6,7 @@
   ...
 }: {
   #Set the baseline with common.nix
-  imports = [self.nixosModules.common];
+  imports = [self.nixosModules.common-client];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
@@ -61,4 +61,7 @@
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
     KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
   '';
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "22.05";
 }
