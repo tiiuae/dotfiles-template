@@ -8,5 +8,6 @@ _: {
     ./fzf.nix
     ./git.nix
     ./terminator.nix
+    ./kitty.nix
   ];
 }

@@ -18,6 +18,7 @@
     environment.systemPackages = [
       #Tmux with a nice wrapper
       pkgs.byobu
+      pkgs.tmux
     ];
 
     services.openssh.enable = true;
