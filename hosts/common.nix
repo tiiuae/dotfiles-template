@@ -26,8 +26,7 @@ in {
         home-manager.extraSpecialArgs = {inherit inputs;};
         home-manager.users.brian = {
           imports =
-            []
-            ++ lib.optionals cfg.isClient [(import ../home/home-client.nix)]
+            lib.optionals cfg.isClient [(import ../home/home-client.nix)]
             ++ lib.optionals cfg.isServer [(import ../home/home-server.nix)];
         };
       }

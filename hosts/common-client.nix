@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 {
   self,
-  inputs,
   lib,
   config,
   ...
