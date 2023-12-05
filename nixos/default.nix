@@ -10,5 +10,6 @@ _: {
     system-packages = import ./system-packages.nix;
     xdg = import ./xdg.nix;
     yubikey = import ./yubikey.nix;
+    fail2ban = import ./fail2ban.nix;
   };
 }

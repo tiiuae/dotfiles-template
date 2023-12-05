@@ -9,6 +9,7 @@
   imports = [
     ./common.nix
     self.nixosModules.user-root
+    self.nixosModules.fail2ban
     inputs.disko.nixosModules.disko
   ];
 
@@ -21,6 +22,11 @@
       pkgs.tmux
     ];
 
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+      };
+    };
   };
 }
