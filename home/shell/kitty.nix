@@ -17,6 +17,7 @@
         enable_audio_bell = false;
         enabled_layouts = "grid,stack,horizontal,tall";
         startup_session = "${config.xdg.configHome}/kitty/startup_session.conf";
+        wayland_titlebar_color = "black";
       };
       keybindings = {
         "ctrl+alt+g" = "goto_layout grid";
