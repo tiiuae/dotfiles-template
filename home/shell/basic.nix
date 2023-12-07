@@ -16,7 +16,13 @@
   programs = {
     pandoc.enable = true;
 
-    bat.enable = true; # BAT_PAGER
+    bat = {
+      enable = true; # BAT_PAGER
+      config = {
+        theme = "Dracula";
+      };
+    };
+
     htop.enable = true; # TODO enable the correct layout
 
     starship.enable = true;
@@ -39,5 +45,9 @@
         eval "$(ssh-agent -s)"
       '';
     };
+  };
+
+  home.shellAliases = {
+    cat = "bat";
   };
 }
