@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./shell/basic.nix
     ./shell/fzf.nix
