@@ -17,9 +17,6 @@
     setup.device.isServer = true;
 
     environment.systemPackages = [
-      #Tmux with a nice wrapper
-      pkgs.byobu
-      pkgs.tmux
     ];
 
     services.openssh = {
