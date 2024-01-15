@@ -27,7 +27,6 @@ with lib; {
           vterm
           pdf-tools
           org-pdftools
-          treesit-grammars.with-all-grammars
         ]))
 
     #native-comp emacs needs 'as' binary from binutils
@@ -50,7 +49,6 @@ with lib; {
     # :formating
     dockfmt
     libxml2
-    tree-sitter
 
     # :lang markdown
     python3.pkgs.grip

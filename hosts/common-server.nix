@@ -2,6 +2,7 @@
 {
   self,
   inputs,
+  lib,
   config,
   pkgs,
   ...
@@ -23,7 +24,7 @@
     services.openssh = {
       enable = true;
       settings = {
-        PermitRootLogin = lib.mkForce "no";
+        #PermitRootLogin = lib.mkForce "no";
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         ClientAliveInterval = lib.mkDefault 60;
