@@ -11,6 +11,7 @@ _: {
       ];
       extraGroups = ["networkmanager" "wheel" "dialout" "plugdev"];
       #Set an initial dummy "Password" for the first boot
+      # sudo -i ; passwd <username>
       hashedPassword = "$6$F0XwJUE0WhvpDo89$RTU5XkHAa50JcxzGClbzmIZjAP80v/TrqGq.WbkxGbXaotf9.er8mbMO/w2lIvwmCHNeCLJznG7TGhziPDtyf/";
     };
   };
