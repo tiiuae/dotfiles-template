@@ -4,6 +4,9 @@ _: {
       host ghaf
            user ghaf
            hostname 192.168.10.149
+      host vedenemo-builder
+            user bmg
+            hostname builder.vedenemo.dev
     '';
   };
 

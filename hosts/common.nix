@@ -41,6 +41,13 @@ in {
   config = {
     nixpkgs.config.allowUnfree = true;
 
+    # Enable developer documentation (man 3) pages
+    documentation = {
+      dev.enable = true;
+      # This is slow for the first build
+      # man.generateCaches = true;
+    };
+
     nix = {
       # This will add each flake input as a registry
       # To make nix3 commands consistent with your flake

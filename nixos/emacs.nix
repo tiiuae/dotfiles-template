@@ -7,15 +7,17 @@
 with lib; {
   services.emacs.enable = false;
   services.emacs.package = with pkgs; ((emacsPackagesFor emacs29-pgtk).emacsWithPackages
-    (epkgs: [epkgs.vterm epkgs.pdf-tools epkgs.org-pdftools]));
+    (epkgs:
+      with epkgs; [
+        vterm
+        pdf-tools
+        org-pdftools
+      ]));
 
-  #TODO Remove rec not needed here
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     EDITOR = "emacs";
     PATH = ["$XDG_CONFIG_HOME/emacs/bin"];
   };
-
-  #fonts.packages = [pkgs.emacs-all-the-icons-fonts];
 
   # :grammar support through language tool
   services.languagetool.enable = true;
@@ -49,6 +51,12 @@ with lib; {
     # :formating
     dockfmt
     libxml2
+
+    # : treemacs
+    python3
+
+    # :copilot
+    nodejs
 
     # :lang markdown
     python3.pkgs.grip

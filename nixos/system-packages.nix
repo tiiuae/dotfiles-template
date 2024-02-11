@@ -9,7 +9,9 @@
     nix-info
     wireguard-tools
     tree
-    python3 #for treemacs
-    nodejs #for copilot
+    #Documentation
+    linux-manual
+    man-pages
+    man-pages-posix
   ];
 }
