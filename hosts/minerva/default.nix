@@ -71,6 +71,9 @@
   services.xserver.xkb = {
     layout = "fi";
     variant = "nodeadkeys";
+    #may have to use gsettings to set, if already defined
+    #gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swapcaps']"
+    options = "ctrl:swapcaps";
   };
 
   # Configure console keymap
