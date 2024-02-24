@@ -76,6 +76,7 @@
         ./nix
         ./nixos
         ./users
+        ./packages
       ];
     };
 }

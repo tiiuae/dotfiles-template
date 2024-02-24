@@ -17,6 +17,7 @@ in {
       user-bmg
       user-groups
       xdg
+      scripts
     ])
     [
       inputs.home-manager.nixosModules.home-manager
