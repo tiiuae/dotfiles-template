@@ -182,6 +182,8 @@ in {
     hardware.enableAllFirmware = true;
 
     boot = {
+      # use the bleeding edge kernel
+      # should this be changed for the nvidia issues
       kernelPackages = pkgs.linuxPackages_latest;
       binfmt.emulatedSystems = [
         "riscv64-linux"
