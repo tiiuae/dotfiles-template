@@ -1,9 +1,18 @@
 {pkgs, ...}: let
-  rebuild-arcadia = pkgs.writeScriptBin "rebuild-arcadia" ''
-    sudo nixos-rebuild switch --flake .#arcadia
+  update-host = pkgs.writeScriptBin "update-host" ''
+    pushd $HOME/.dotfiles
+    nix flake update
+    popd
+  '';
+  rebuild-host = pkgs.writeScriptBin "rebuild-host" ''
+    pushd $HOME/.dotfiles
+    sudo nixos-rebuild switch --flake .#$HOSTNAME
+    popd
   '';
   rebuild-nephele = pkgs.writeScriptBin "rebuild-nephele" ''
+    pushd $HOME/.dotfiles
     nixos-rebuild switch --flake .#nephele --target-host "root@nephele"
+    popd
   '';
   rebuild-x1 = pkgs.writeScriptBin "rebuild-x1" ''
     nixos-rebuild --flake .#lenovo-x1-carbon-gen11-debug --target-host "root@ghaf-host" --fast switch
@@ -12,9 +21,10 @@
   #ownfile = pkgs.callPackage ./ownfile.nix {};
 in {
   environment.systemPackages = with pkgs; [
-    rebuild-arcadia
+    rebuild-host
     rebuild-nephele
     rebuild-x1
+    update-host
     #ownfile
   ];
 }
