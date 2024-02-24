@@ -47,5 +47,20 @@
     services.openssh.startWhenNeeded = false;
     # enable the fwupdate daemon to install fw changes
     services.fwupd.enable = true;
+
+    # nix.buildMachines = [
+    #   {
+    #     # include nephele here to avoid recursion
+    #     hostName = "nephele";
+    #     system = "x86_64-linux";
+    #     maxJobs = 8;
+    #     speedFactor = 1;
+    #     supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+    #     mandatoryFeatures = [];
+    #     #TODO Fix this
+    #     sshUser = "brian";
+    #     sshKey = "/home/brian/.ssh/builder-key";
+    #   }
+    # ];
   };
 }
