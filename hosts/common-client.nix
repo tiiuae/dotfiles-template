@@ -45,5 +45,7 @@
 
     #By default the client devices to not provide inbound ssh
     services.openssh.startWhenNeeded = false;
+    # enable the fwupdate daemon to install fw changes
+    services.fwupd.enable = true;
   };
 }

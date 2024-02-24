@@ -59,6 +59,7 @@ in {
       settings = {
         # Enable flakes and new 'nix' command
         experimental-features = "nix-command flakes";
+        system-features = ["nixos-test" "benchmark" "big-parallel" "kvm"];
 
         # Avoid copying unecessary stuff over SSH
         builders-use-substitutes = true;
@@ -91,7 +92,18 @@ in {
           mandatoryFeatures = [];
           #TODO Fix this
           sshUser = "brian";
-          sshKey = "/home/brian/.ssh/id_rsa";
+          sshKey = "/home/brian/.ssh/builder-key";
+        }
+        {
+          hostName = "vedenemo-builder";
+          system = "x86_64-linux";
+          maxJobs = 8;
+          speedFactor = 1;
+          supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+          mandatoryFeatures = [];
+          #TODO Fix this
+          sshUser = "brian";
+          sshKey = "/home/brian/.ssh/builder-key";
         }
       ];
 
@@ -121,12 +133,22 @@ in {
     programs.ssh = {
       startAgent = true;
       extraConfig = ''
-         Host awsarm
-           HostName awsarm.vedenemo.dev
-           Port 20220
+        Host awsarm
+             HostName awsarm.vedenemo.dev
+             Port 20220
         Host nephele
-           Hostname 65.109.25.143
-           Port 22
+             Hostname 65.109.25.143
+             Port 22
+        host ghaf-net
+             user ghaf
+             hostname 192.168.10.108
+        host ghaf-host
+             user ghaf
+             hostname 192.168.101.2
+             proxyjump ghaf-net
+        host vedenemo-builder
+             user bmg
+             hostname builder.vedenemo.dev
       '';
       knownHosts = {
         awsarm-ed25519 = {
@@ -140,6 +162,14 @@ in {
         awsarm-eddsa = {
           hostNames = ["awsarm.vedenemo.dev"];
           publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNH+bPKgI9X7G1/MYq8fUSIkOyL2TmhH0quYlbX8fb9Z0AG6qRcNHaoFFIJaKxWEcAafo+hZNI1A9LKsY9MYXtE=";
+        };
+        vedenemo-builder = {
+          hostNames = ["builder.vedenemo.dev"];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHSI8s/wefXiD2h3I3mIRdK+d9yDGMn0qS5fpKDnSGqj";
+        };
+        nephele = {
+          hostNames = ["65.109.25.143"];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwoWKmFa6B9SBci63YG0gaP2kxhXNn1vlMgbky6LjKr";
         };
       };
     };
