@@ -103,7 +103,7 @@ in {
           supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
           mandatoryFeatures = [];
           #TODO Fix this
-          sshUser = "brian";
+          sshUser = "bmg";
           sshKey = "/home/brian/.ssh/builder-key";
         }
       ];
