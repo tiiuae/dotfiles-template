@@ -83,6 +83,7 @@ in {
       extraOptions = ''
         keep-outputs             = true
         keep-derivations         = true
+        plugin-files = ${pkgs.nix-doc}/lib/libnix_doc_plugin.so
       '';
 
       #https://nixos.wiki/wiki/Distributed_build#NixOS
