@@ -37,6 +37,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # index of the nixpkgs
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     #TODO re-enable later
     # for provisioning secrets that can be embedded in the configuration
     # sops-nix = {

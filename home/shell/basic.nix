@@ -38,15 +38,15 @@
       enableAliases = true;
     };
 
-    #TODO ADD git configs
     bash = {
       enable = true;
       initExtra = ''
         eval "$(ssh-agent -s)"
       '';
     };
-  };
 
+    nix-index.enable = true;
+  };
   home.shellAliases = {
     cat = "bat";
   };

@@ -10,15 +10,17 @@
   cfg = config.setup.device;
 in {
   imports = lib.flatten [
-    (with self.nixosModules; [
-      hardening
-      system-packages
-      emacs
-      user-bmg
-      user-groups
-      xdg
-      scripts
-    ])
+    (with self.nixosModules;
+      [
+        hardening
+        system-packages
+        emacs
+        user-bmg
+        user-groups
+        xdg
+        scripts
+      ]
+      ++ [inputs.nix-index-database.nixosModules.nix-index])
     [
       inputs.home-manager.nixosModules.home-manager
       {
@@ -28,7 +30,8 @@ in {
         home-manager.users.brian = {
           imports =
             lib.optionals cfg.isClient [(import ../home/home-client.nix)]
-            ++ lib.optionals cfg.isServer [(import ../home/home-server.nix)];
+            ++ lib.optionals cfg.isServer [(import ../home/home-server.nix)]
+            ++ [inputs.nix-index-database.hmModules.nix-index];
         };
       }
     ]
@@ -131,47 +134,53 @@ in {
     };
 
     ## Local config
-    programs.ssh = {
-      startAgent = true;
-      extraConfig = ''
-        Host awsarm
-             HostName awsarm.vedenemo.dev
-             Port 20220
-        Host nephele
-             Hostname 65.109.25.143
-             Port 22
-        host ghaf-net
-             user ghaf
-             hostname 192.168.10.108
-        host ghaf-host
-             user ghaf
-             hostname 192.168.101.2
-             proxyjump ghaf-net
-        host vedenemo-builder
-             user bmg
-             hostname builder.vedenemo.dev
-      '';
-      knownHosts = {
-        awsarm-ed25519 = {
-          hostNames = ["awsarm.vedenemo.dev"];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3f7tAAO3Fc+8BqemsBQc/Yl/NmRfyhzr5SFOSKqrv0";
+    programs = {
+      ssh = {
+        startAgent = true;
+        extraConfig = ''
+          Host awsarm
+               HostName awsarm.vedenemo.dev
+               Port 20220
+          Host nephele
+               Hostname 65.109.25.143
+               Port 22
+          host ghaf-net
+               user ghaf
+               hostname 192.168.10.108
+          host ghaf-host
+               user ghaf
+               hostname 192.168.101.2
+               proxyjump ghaf-net
+          host vedenemo-builder
+               user bmg
+               hostname builder.vedenemo.dev
+        '';
+        knownHosts = {
+          awsarm-ed25519 = {
+            hostNames = ["awsarm.vedenemo.dev"];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3f7tAAO3Fc+8BqemsBQc/Yl/NmRfyhzr5SFOSKqrv0";
+          };
+          awsarm-rsa = {
+            hostNames = ["awsarm.vedenemo.dev"];
+            publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtP5yuGAaMGK4GPsViPCIZvaPXN2tPoZH59i6CtPA1Vg8JzRX9g2PgFmUbNtQ9nxQhtUlVbNddCxoEKPJt+VgL/23o1DXM+EauuGOp9PijfcNqDq2jvwW1yoCnxMyA53vC7gR6CYGdu9BhQJYK9S4SaHtf4RcfUa39uWPfUCIKUyG9vB+T9p7E86O+pLBMRpAvppitFLdkxgAYZeedFUvhIQQZlTTJ7ELT3bJry5S+aBck83uZuU1guklyvCR9cZLMiAG2N4Goo/mH11kS4ytMV0AvpY2x4qY40wQvb3gGDYj53WArTkTf52yHELDbtCnjlwFW+5hJBog6CQaxy0S8eSN4MBbM2czmXh3sofwW7iB3iXr6q7IpTzcpeaiawau/OucTBnjVF+wm8C8MV3ekmEyTD+xEGQxESgJgqTLnHD3EKWm4qCTZBhq+XuazVP60eKvK5OVcIxsKHP4WO0YvP8oyjT62ur60wVKtJ2FJ3f0SAtSM2igV2KuDgdi3lek=";
+          };
+          awsarm-eddsa = {
+            hostNames = ["awsarm.vedenemo.dev"];
+            publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNH+bPKgI9X7G1/MYq8fUSIkOyL2TmhH0quYlbX8fb9Z0AG6qRcNHaoFFIJaKxWEcAafo+hZNI1A9LKsY9MYXtE=";
+          };
+          vedenemo-builder = {
+            hostNames = ["builder.vedenemo.dev"];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHSI8s/wefXiD2h3I3mIRdK+d9yDGMn0qS5fpKDnSGqj";
+          };
+          nephele = {
+            hostNames = ["65.109.25.143"];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwoWKmFa6B9SBci63YG0gaP2kxhXNn1vlMgbky6LjKr";
+          };
         };
-        awsarm-rsa = {
-          hostNames = ["awsarm.vedenemo.dev"];
-          publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtP5yuGAaMGK4GPsViPCIZvaPXN2tPoZH59i6CtPA1Vg8JzRX9g2PgFmUbNtQ9nxQhtUlVbNddCxoEKPJt+VgL/23o1DXM+EauuGOp9PijfcNqDq2jvwW1yoCnxMyA53vC7gR6CYGdu9BhQJYK9S4SaHtf4RcfUa39uWPfUCIKUyG9vB+T9p7E86O+pLBMRpAvppitFLdkxgAYZeedFUvhIQQZlTTJ7ELT3bJry5S+aBck83uZuU1guklyvCR9cZLMiAG2N4Goo/mH11kS4ytMV0AvpY2x4qY40wQvb3gGDYj53WArTkTf52yHELDbtCnjlwFW+5hJBog6CQaxy0S8eSN4MBbM2czmXh3sofwW7iB3iXr6q7IpTzcpeaiawau/OucTBnjVF+wm8C8MV3ekmEyTD+xEGQxESgJgqTLnHD3EKWm4qCTZBhq+XuazVP60eKvK5OVcIxsKHP4WO0YvP8oyjT62ur60wVKtJ2FJ3f0SAtSM2igV2KuDgdi3lek=";
-        };
-        awsarm-eddsa = {
-          hostNames = ["awsarm.vedenemo.dev"];
-          publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNH+bPKgI9X7G1/MYq8fUSIkOyL2TmhH0quYlbX8fb9Z0AG6qRcNHaoFFIJaKxWEcAafo+hZNI1A9LKsY9MYXtE=";
-        };
-        vedenemo-builder = {
-          hostNames = ["builder.vedenemo.dev"];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHSI8s/wefXiD2h3I3mIRdK+d9yDGMn0qS5fpKDnSGqj";
-        };
-        nephele = {
-          hostNames = ["65.109.25.143"];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwoWKmFa6B9SBci63YG0gaP2kxhXNn1vlMgbky6LjKr";
-        };
+      };
+      # Disable in favor of nix-index-database
+      command-not-found = {
+        enable = false;
       };
     };
 
