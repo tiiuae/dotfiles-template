@@ -8,7 +8,6 @@
     (ripgrep.override {withPCRE2 = true;})
     tree
     psmisc
-    rnix-lsp
     shfmt
     shellcheck
   ];

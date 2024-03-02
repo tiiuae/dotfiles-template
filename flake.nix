@@ -43,6 +43,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nixd lsp integration
+    nixd = {
+      url = "github:nix-community/nixd";
+    };
+
     #TODO re-enable later
     # for provisioning secrets that can be embedded in the configuration
     # sops-nix = {

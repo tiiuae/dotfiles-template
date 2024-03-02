@@ -8,6 +8,7 @@
     # customise pkgs
     _module.args.pkgs = import inputs.nixpkgs {
       inherit system inputs;
+      overlays = [inputs.nixd.overlays.default];
       config.allowUnfree = true;
     };
 

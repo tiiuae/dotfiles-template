@@ -60,6 +60,9 @@ with lib; {
 
     # :lang markdown
     python3.pkgs.grip
+
+    # :tools lsp mode for nix
+    nixd
   ];
 
   system.userActivationScripts = {
