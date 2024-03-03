@@ -19,7 +19,7 @@
     # For preserving compatibility with non-Flake systems
     # Useful for the first bootstrap from a clean nixos install
     flake-compat = {
-      url = "github:nix-community/flake-compat";
+      url = "github:inclyc/flake-compat";
       flake = false;
     };
 
@@ -89,5 +89,7 @@
         ./users
         ./packages
       ];
+
+      debug = true;
     };
 }
