@@ -32,10 +32,7 @@
       nix-direnv.enable = true;
     };
 
-    eza = {
-      enable = true;
-      enableAliases = true;
-    };
+    eza.enable = true;
 
     bash = {
       enable = true;
@@ -46,6 +43,7 @@
 
     nix-index.enable = true;
   };
+
   home.shellAliases = {
     cat = "bat";
   };

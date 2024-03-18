@@ -69,6 +69,8 @@ in {
         builders-use-substitutes = true;
         trusted-users = ["root" "brian"];
         auto-optimise-store = true; # Optimise syslinks
+        keep-outputs = true; # Keep outputs of derivations
+        keep-derivations = true; # Keep derivations
       };
 
       # Garbage collection
@@ -79,12 +81,9 @@ in {
         options = pkgs.lib.mkDefault "--delete-older-than 7d";
       };
 
-      # Keep dependencies that are still in use
-      extraOptions = ''
-        keep-outputs             = true
-        keep-derivations         = true
-        plugin-files = ${pkgs.nix-doc}/lib/libnix_doc_plugin.so
-      '';
+      # extraOptions = ''
+      #   plugin-files = ${pkgs.nix-doc}/lib/libnix_doc_plugin.so
+      # '';
 
       #https://nixos.wiki/wiki/Distributed_build#NixOS
       buildMachines = [
