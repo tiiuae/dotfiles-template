@@ -10,6 +10,9 @@
       inherit system inputs;
       overlays = [inputs.nixd.overlays.default];
       config.allowUnfree = true;
+      config.permittedInsecurePackages = [
+        "nix-2.16.2"
+      ];
     };
 
     # make custom top-level lib available to all `perSystem` functions

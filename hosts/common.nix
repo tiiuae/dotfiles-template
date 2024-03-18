@@ -44,7 +44,9 @@ in {
 
   config = {
     nixpkgs.config.allowUnfree = true;
-
+    nixpkgs.config.permittedInsecurePackages = [
+      "nix-2.16.2"
+    ];
     # Enable developer documentation (man 3) pages
     documentation = {
       dev.enable = true;
