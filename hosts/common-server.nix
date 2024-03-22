@@ -28,6 +28,7 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         ClientAliveInterval = lib.mkDefault 60;
+        LogLevel = "VERBOSE"; #needed for fail2ban
       };
       hostKeys = [
         {

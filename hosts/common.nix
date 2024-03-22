@@ -133,6 +133,7 @@ in {
       firewall = {
         enable = true;
       };
+      nftables.enable = true;
     };
 
     ## Local config

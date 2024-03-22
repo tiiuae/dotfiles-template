@@ -1,13 +1,13 @@
 _: {
   services.fail2ban = {
     enable = true;
-    maxretry = 5; # Observe 5 violations before banning an IP
+    maxretry = 3; # Observe 3 violations before banning an IP
     ignoreIP = [
       /*
       Anything constant
       */
     ];
-    bantime = "10m"; # Set bantime to one day
+    bantime = "24h"; # Set bantime to one day
     bantime-increment = {
       enable = true; # Enable increment of bantime after each violation
       multipliers = "1 2 4 8 16 32 64";
