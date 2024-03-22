@@ -10,6 +10,7 @@
     psmisc
     shfmt
     shellcheck
+    file
   ];
 
   programs = {
@@ -28,7 +29,6 @@
 
     direnv = {
       enable = true;
-      enableBashIntegration = true;
       nix-direnv.enable = true;
     };
 
@@ -36,9 +36,12 @@
 
     bash = {
       enable = true;
-      initExtra = ''
-        eval "$(ssh-agent -s)"
-      '';
+      initExtra = builtins.readFile ./bashrc;
+    };
+
+    # improved cd
+    zoxide = {
+      enable = true;
     };
 
     nix-index.enable = true;
