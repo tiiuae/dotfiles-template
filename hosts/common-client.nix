@@ -3,6 +3,7 @@
   self,
   lib,
   config,
+  pkgs,
   ...
 }: {
   imports = lib.flatten [
@@ -47,6 +48,16 @@
     services.openssh.startWhenNeeded = false;
     # enable the fwupdate daemon to install fw changes
     services.fwupd.enable = true;
+
+    #
+    # Setup the zsa keyboards
+    #
+    environment.systemPackages = with pkgs; [
+      wally-cli # ergodox configuration tool
+      keymapp
+    ];
+
+    hardware.keyboard.zsa.enable = true;
 
     # nix.buildMachines = [
     #   {

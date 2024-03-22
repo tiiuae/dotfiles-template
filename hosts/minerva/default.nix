@@ -2,6 +2,7 @@
 {
   self,
   lib,
+  pkgs,
   ...
 }: {
   #Set the baseline with common.nix
@@ -69,15 +70,8 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "fi";
-    variant = "nodeadkeys";
-    #may have to use gsettings to set, if already defined
-    #gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swapcaps']"
     options = "ctrl:swapcaps";
   };
-
-  # Configure console keymap
-  console.keyMap = "fi";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.05";
