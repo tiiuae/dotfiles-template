@@ -71,7 +71,13 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     options = "ctrl:swapcaps";
+    #gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swapcaps']"
+    #gsettings reset org.gnome.desktop.input-sources xkb-options
+    #gsettings reset org.gnome.desktop.input-sources sources
+    #localectl
   };
+
+  console.useXkbConfig = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.05";

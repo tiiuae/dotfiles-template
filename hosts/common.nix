@@ -157,6 +157,8 @@ in {
           host vedenemo-builder
                user bmg
                hostname builder.vedenemo.dev
+          host caelus
+               hostname 95.217.167.39
         '';
         knownHosts = {
           awsarm-ed25519 = {
@@ -178,6 +180,10 @@ in {
           nephele = {
             hostNames = ["65.109.25.143"];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwoWKmFa6B9SBci63YG0gaP2kxhXNn1vlMgbky6LjKr";
+          };
+          caelus = {
+            hostNames = ["95.217.167.39"];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHrlodsjLMgGSEM0+NP+0FN7MD6gkySxo7ydKWxP44w";
           };
         };
       };

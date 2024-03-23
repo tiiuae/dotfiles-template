@@ -14,6 +14,7 @@
     host-arcadia = import ./arcadia;
     host-minerva = import ./minerva;
     host-nephele = import ./nephele;
+    host-caelus = import ./caelus;
   };
 
   flake.nixosConfigurations = let
@@ -33,6 +34,11 @@
     nephele = lib.nixosSystem {
       inherit specialArgs;
       modules = [self.nixosModules.host-nephele];
+    };
+
+    caelus = lib.nixosSystem {
+      inherit specialArgs;
+      modules = [self.nixosModules.host-caelus];
     };
   };
 }
