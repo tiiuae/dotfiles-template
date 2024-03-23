@@ -22,7 +22,7 @@ nixos-generate-config --no-filesystems --root /mnt
 ls -al /mnt/etc/nixos/
 #+end_src
 
-use [[https://github.com/nix-community/disko][disko]] to define the disk partitioning scheme that you with to apply
+use [[https://github.com/nix-community/disko][disko]] to define the disk partitioning scheme that you with to apply and add the server to the list of hosts.
 
 Finally deploy the configuration to the new server
 #+begin_src sh
