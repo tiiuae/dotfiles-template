@@ -29,6 +29,6 @@
 
   programs.gh = {
     enable = true;
-    #extensions = with pkgs; [gh-poi gh-eco gh-dash gh-markdown-preview];
+    extensions = with pkgs; [gh-poi gh-eco gh-dash gh-markdown-preview gh-copilot];
   };
 }
