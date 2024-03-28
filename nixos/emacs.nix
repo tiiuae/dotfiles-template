@@ -63,6 +63,7 @@ with lib; {
 
     # :tools lsp mode for nix
     nixd
+    tree-sitter
   ];
 
   system.userActivationScripts = {
