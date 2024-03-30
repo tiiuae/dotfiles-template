@@ -48,13 +48,12 @@
       url = "github:nix-community/nixd";
     };
 
-    #TODO re-enable later
     # for provisioning secrets that can be embedded in the configuration
-    # sops-nix = {
-    #   url = "github:Mic92/sops-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.nixpkgs-stable.follows = "nixpkgs";
-    # };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
 
     #TODO add the following for more managable configs
     #https://github.com/ehllie/ez-configs/tree/main
