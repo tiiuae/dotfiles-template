@@ -11,6 +11,7 @@
       audio
       desktop-manager
       emacs-ui
+      emacs
       libreoffice
       locale-font
       yubikey

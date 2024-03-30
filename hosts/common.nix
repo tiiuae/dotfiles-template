@@ -14,7 +14,6 @@ in {
       [
         hardening
         system-packages
-        emacs
         user-bmg
         user-groups
         xdg
