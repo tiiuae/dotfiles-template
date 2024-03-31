@@ -23,6 +23,7 @@
       #credential.helper = "store --file ~/.git-credentials";
       format.signoff = true;
       commit.gpgsign = true;
+      tag.gpgSign = true;
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519_sk.pub";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
