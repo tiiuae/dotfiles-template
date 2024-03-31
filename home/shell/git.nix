@@ -1,6 +1,10 @@
 {pkgs, ...}: {
   # TODO add conf file and settings and secrets store
   #
+
+  #TODO change this to use the keys from github .keys by default
+  home.file.".ssh/allowed_signers".text = "* ${builtins.readFile ../../keys/ssh-keys.txt}";
+
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
@@ -18,6 +22,10 @@
       color.ui = "auto";
       #credential.helper = "store --file ~/.git-credentials";
       format.signoff = true;
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/id_ed25519_sk.pub";
+      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       init.defaultBranch = "main";
       #protocol.keybase.allow = "always";
       pull.rebase = "true";
