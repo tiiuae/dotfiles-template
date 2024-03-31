@@ -9,6 +9,13 @@
     nix-info
     wireguard-tools
     tree
+    file
+    binutils
+    lsof
+    dnsutils
+    netcat
+    usbutils
+    pciutils
     #Documentation
     linux-manual
     man-pages

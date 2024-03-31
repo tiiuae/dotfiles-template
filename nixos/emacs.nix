@@ -51,6 +51,7 @@ with lib; {
     # :formating
     dockfmt
     libxml2
+    nodePackages.prettier
 
     # : treemacs
     python3
