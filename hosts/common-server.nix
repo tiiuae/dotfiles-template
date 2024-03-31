@@ -2,7 +2,6 @@
 {
   self,
   inputs,
-  lib,
   config,
   pkgs,
   ...
@@ -10,7 +9,7 @@
   imports = [
     ./common.nix
     self.nixosModules.user-root
-    self.nixosModules.fail2ban
+    self.nixosModules.sshd
     inputs.disko.nixosModules.disko
   ];
 
@@ -20,22 +19,5 @@
     environment.systemPackages = [
       pkgs.kitty.terminfo
     ];
-
-    services.openssh = {
-      enable = true;
-      settings = {
-        #PermitRootLogin = lib.mkForce "no";
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-        ClientAliveInterval = lib.mkDefault 60;
-        LogLevel = "VERBOSE"; #needed for fail2ban
-      };
-      hostKeys = [
-        {
-          path = "/etc/ssh/ssh_host_ed25519_key";
-          type = "ed25519";
-        }
-      ];
-    };
   };
 }

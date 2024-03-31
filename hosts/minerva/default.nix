@@ -2,11 +2,10 @@
 {
   self,
   lib,
-  pkgs,
   ...
 }: {
   #Set the baseline with common.nix
-  imports = [self.nixosModules.common-client];
+  imports = [self.nixosModules.common-client self.nixosModules.sshd];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

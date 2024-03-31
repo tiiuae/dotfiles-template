@@ -12,7 +12,8 @@
         nix
         nixos-rebuild
         #TODO Reenable
-        #        sops-nix
+        #sops-nix
+        sops
         ssh-to-age
       ];
     };
