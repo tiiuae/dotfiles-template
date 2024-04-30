@@ -21,5 +21,6 @@
     man-pages
     man-pages-posix
     nix-doc
+    nix-tree
   ];
 }
