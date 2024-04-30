@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib; {
@@ -22,50 +23,50 @@ with lib; {
   # :grammar support through language tool
   services.languagetool.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    ((emacsPackagesFor emacs29-pgtk).emacsWithPackages
-      (epkgs:
-        with epkgs; [
-          vterm
-          pdf-tools
-          org-pdftools
-        ]))
+  environment.systemPackages = with pkgs;
+    [
+      ((emacsPackagesFor emacs29-pgtk).emacsWithPackages
+        (epkgs:
+          with epkgs; [
+            vterm
+            pdf-tools
+            org-pdftools
+          ]))
 
-    #native-comp emacs needs 'as' binary from binutils
-    binutils
+      #native-comp emacs needs 'as' binary from binutils
+      binutils
 
-    zstd # for undo-fu-session/undo-tree compression
+      zstd # for undo-fu-session/undo-tree compression
 
-    ## Module dependencies
-    # :checkers spell
-    (aspellWithDicts (ds: with ds; [en en-computers en-science]))
-    # :lookup
-    wordnet
+      ## Module dependencies
+      # :checkers spell
+      (aspellWithDicts (ds: with ds; [en en-computers en-science]))
+      # :lookup
+      wordnet
 
-    # :tools editorconfig
-    editorconfig-core-c # per-project style config
+      # :tools editorconfig
+      editorconfig-core-c # per-project style config
 
-    # :tools lookup & :lang org +roam
-    sqlite
+      # :tools lookup & :lang org +roam
+      sqlite
 
-    # :formating
-    dockfmt
-    libxml2
-    nodePackages.prettier
+      # :formating
+      dockfmt
+      libxml2
+      nodePackages.prettier
 
-    # : treemacs
-    python3
+      # : treemacs
+      python3
 
-    # :copilot
-    nodejs
+      # :copilot
+      nodejs
 
-    # :lang markdown
-    python3.pkgs.grip
+      # :lang markdown
+      python3.pkgs.grip
 
-    # :tools lsp mode for nix
-    nixd
-    tree-sitter
-  ];
+      tree-sitter
+    ]
+    ++ [inputs.nixd.packages."${pkgs.system}".nixd]; # :tools lsp mode for nix
 
   system.userActivationScripts = {
     installDoomEmacs = ''
