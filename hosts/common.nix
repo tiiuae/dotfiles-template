@@ -145,9 +145,11 @@ in {
                Port 22
           host ghaf-net
                user ghaf
+               IdentityFile ~/.ssh/builder-key
                hostname 192.168.10.108
           host ghaf-host
                user ghaf
+               IdentityFile ~/.ssh/builder-key
                hostname 192.168.101.2
                proxyjump ghaf-net
           host vedenemo-builder
