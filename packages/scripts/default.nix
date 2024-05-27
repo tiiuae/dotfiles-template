@@ -6,7 +6,7 @@
   '';
   rebuild-host = pkgs.writeScriptBin "rebuild-host" ''
     pushd $HOME/.dotfiles
-    sudo nixos-rebuild switch --flake .#$HOSTNAME
+    sudo nixos-rebuild switch --flake .#$HOSTNAME $@
     popd
   '';
   rebuild-nephele = pkgs.writeScriptBin "rebuild-nephele" ''
@@ -25,7 +25,7 @@
   #https://discourse.nixos.org/t/install-shell-script-on-nixos/6849/10
   #ownfile = pkgs.callPackage ./ownfile.nix {};
 in {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     rebuild-host
     rebuild-nephele
     rebuild-caelus
