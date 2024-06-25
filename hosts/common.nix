@@ -18,6 +18,7 @@ in {
         user-groups
         xdg
         scripts
+        nebula
       ]
       ++ [inputs.nix-index-database.nixosModules.nix-index])
     [
