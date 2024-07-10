@@ -17,7 +17,7 @@ with lib; {
 
   environment.sessionVariables = {
     EDITOR = "emacs";
-    PATH = ["$XDG_CONFIG_HOME/emacs/bin"];
+    PATH = ["\${XDG_CONFIG_HOME}/emacs/bin"];
   };
 
   # :grammar support through language tool

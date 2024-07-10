@@ -13,7 +13,7 @@ _: {
       XDG_DATA_HOME = "$HOME/.local/share";
       #TODO Make sure that the bin dir is created.
       XDG_BIN_HOME = "$HOME/.local/bin";
-      PATH = ["$XDG_BIN_HOME"];
+      PATH = ["\${XDG_BIN_HOME}"];
     };
     variables = {
       # Conform more programs to XDG conventions. The rest are handled by their
@@ -24,8 +24,8 @@ _: {
         repl $XDG_CONFIG_HOME/aspell/en.prepl;
       '';
       #TODO the directory has to be created for the HISTFILE before it can be used so create it
-      LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
-      WGETRC = "$XDG_CONFIG_HOME/wgetrc";
+      LESSHISTFILE = "\${XDG_CACHE_HOME}/lesshst";
+      WGETRC = "\${XDG_CONFIG_HOME}/wgetrc";
       HISTFILE = "\${XDG_CACHE_HOME}/history";
       INPUTRC = "\${XDG_CONFIG_HOME}/inputrc";
     };
