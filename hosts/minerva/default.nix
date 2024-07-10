@@ -28,6 +28,7 @@
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/C0B0-A8A8";
     fsType = "vfat";
+    options = ["umask=0077" "defaults"];
   };
 
   swapDevices = [];

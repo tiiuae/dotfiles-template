@@ -25,6 +25,7 @@
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/7BAD-F70E";
     fsType = "vfat";
+    options = ["umask=0077" "defaults"];
   };
 
   swapDevices = [];
