@@ -2,10 +2,11 @@
 {
   self,
   lib,
+  inputs,
   ...
 }: {
   #Set the baseline with common.nix
-  imports = [self.nixosModules.common-client self.nixosModules.sshd];
+  imports = [self.nixosModules.common-client self.nixosModules.sshd inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
