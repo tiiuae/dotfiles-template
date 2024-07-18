@@ -6,6 +6,7 @@
   ...
 }: {
   #Set the baseline with common.nix
+  # <CHANGE_ME> which nixos-hardware
   imports = [self.nixosModules.common-client self.nixosModules.sshd inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -17,10 +18,12 @@
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];
     # Setup keyfile
+    # <CHANGE_ME> This is the keyfile for the encrypted disk and the DISK ID
     initrd.secrets = {"/crypto_keyfile.bin" = null;};
     initrd.luks.devices."luks-beb21201-376c-48a7-bd8f-d1fe91210548".device = "/dev/disk/by-uuid/beb21201-376c-48a7-bd8f-d1fe91210548";
   };
 
+  # <CHANGE_ME> The disk names
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/f9a590f0-3553-4e57-a477-91d291999797";
     fsType = "ext4";
@@ -49,29 +52,11 @@
 
   #TODO Replace this with the name of the nixosConfiguration so it can be common
   # Define your hostname
-  networking.hostName = "minerva";
-
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      address = ["10.7.0.7/24"];
-      dns = ["172.26.0.2"];
-      privateKeyFile = "/root/wireguard-keys/privatekey";
-
-      peers = [
-        {
-          publicKey = "3xZ1Ug4n8XrjZqlrrrveiIPQq3uyMtxuJXII3vCwyww=";
-          presharedKeyFile = "/root/wireguard-keys/preshared_from_bmg-ls_key";
-          allowedIPs = ["0.0.0.0/0"];
-          endpoint = "35.178.208.8:51820";
-          persistentKeepalive = 25;
-        }
-      ];
-    };
-  };
+  networking.hostName = "<CHANGE_ME>";
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    options = "ctrl:swapcaps";
+    #options = "ctrl:swapcaps";
     #gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swapcaps']"
     #gsettings reset org.gnome.desktop.input-sources xkb-options
     #gsettings reset org.gnome.desktop.input-sources sources
@@ -81,5 +66,5 @@
   console.useXkbConfig = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "22.05";
+  system.stateVersion = "24.05";
 }
