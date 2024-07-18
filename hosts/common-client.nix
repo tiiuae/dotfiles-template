@@ -60,6 +60,7 @@
 
     hardware.keyboard.zsa.enable = true;
 
+    # <CHANGE_ME> Set the hostname
     # nix.buildMachines = [
     #   {
     #     # include nephele here to avoid recursion

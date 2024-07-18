@@ -93,7 +93,7 @@ in {
           speedFactor = 1;
           supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
           mandatoryFeatures = [];
-          #TODO Fix this
+          #TODO <CHANGE_ME> Fix this
           sshUser = "bmg";
           sshKey = "/home/brian/.ssh/builder-key";
         }
@@ -104,7 +104,7 @@ in {
           speedFactor = 1;
           supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
           mandatoryFeatures = [];
-          #TODO Fix this
+          #TODO <CHANGE_ME> Fix this
           sshUser = "bmg";
           sshKey = "/home/brian/.ssh/builder-key";
         }
@@ -134,16 +134,14 @@ in {
     };
 
     ## Local config
+    ##
     programs = {
       ssh = {
         startAgent = true;
         extraConfig = ''
           Host hetzarm
-               user bmg
+               user <CHANGE_ME>
                HostName 65.21.20.242
-          Host nephele
-               Hostname 65.109.25.143
-               Port 22
           host ghaf-net
                user ghaf
                IdentityFile ~/.ssh/builder-key
@@ -155,10 +153,8 @@ in {
                hostname 192.168.101.2
                proxyjump ghaf-net
           host vedenemo-builder
-               user bmg
+               user <CHANGE_ME>
                hostname builder.vedenemo.dev
-          host caelus
-               hostname 95.217.167.39
         '';
         knownHosts = {
           hetzarm-ed25519 = {
@@ -168,14 +164,6 @@ in {
           vedenemo-builder = {
             hostNames = ["builder.vedenemo.dev"];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHSI8s/wefXiD2h3I3mIRdK+d9yDGMn0qS5fpKDnSGqj";
-          };
-          nephele = {
-            hostNames = ["65.109.25.143"];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwoWKmFa6B9SBci63YG0gaP2kxhXNn1vlMgbky6LjKr";
-          };
-          caelus = {
-            hostNames = ["95.217.167.39"];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHrlodsjLMgGSEM0+NP+0FN7MD6gkySxo7ydKWxP44w";
           };
         };
       };
